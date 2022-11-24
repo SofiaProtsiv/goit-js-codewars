@@ -103,15 +103,6 @@ console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
 хвилин) у рядок у форматі годин та хвилин `HH:MM`.
 
 ```js
-const hours = Math.floor(totalMinutes / 60);
-const minutes = totalMinutes % 60;
-console.log(hours);
-console.log(minutes);
-
-const doubleDigitHours = String(hours).padStart(2, 0);
-const doubleDigitMinutes = String(minutes).padStart(2, 0);
-console.log(`${doubleDigitHours}:${doubleDigitMinutes}`);
-
 function formatTime(minutes) {}
 
 console.log(formatTime(70)); // "01:10"

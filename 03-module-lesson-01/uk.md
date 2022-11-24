@@ -1,7 +1,5 @@
 # Модуль 3. Заняття 1. Об'єкти
 
-<!-- https://github.com/luxplanjay/js-33-qna/blob/03-%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B/js/vehicles.js -->
-
 ## Example 1 - Основи об'єктів
 
 Напиши скрипт, який для об'єкта `user`, послідовно:
@@ -25,18 +23,37 @@ const user = {
 
 ## Example 2 - метод Object.values()
 
-У нас є об'єкт, де зберігаються зарплати нашої команди. Напишіть код для
-підсумовування всіх зарплат і збережіть результат у змінній sum. Повинно
-вийти 390. Якщо об'єкт `salaries` порожній, то результат має бути 0.
+Напиши функцію countTotalSalary(employees) приймаючу об'єкт зарплат. Функція
+рахує загальну суму зарплати працівників і повертає її. Якщо об'єкт `employees`
+порожній, то результат має бути 0.
 
 ### Код
 
 ```js
-const salaries = {
-  John: 100,
-  Ann: 160,
-  Pete: 130,
+const countTotalSalary = function (employees) {
+  // твій код
 };
+
+/*
+ * Викличи функції для перевірки працездатності твоєї реалізації.
+ */
+console.log(countTotalSalary({})); // 0
+
+console.log(
+  countTotalSalary({
+    mango: 100,
+    poly: 150,
+    alfred: 80,
+  })
+); // 330
+
+console.log(
+  countTotalSalary({
+    kiwi: 200,
+    lux: 50,
+    chelsy: 150,
+  })
+); // 400
 ```
 
 ## Example 3 - Масив об'єктів
@@ -159,4 +176,39 @@ const account = {
    */
   getTransactionTotal(type) {},
 };
+```
+
+## Example 6 - Комплексні завдання
+
+- Отримати список моделей задопомогою функції `getModels`:
+
+- Замінити назву моделі задопомогою функції `changeModel`
+
+- Отримати загальну ціну всіх машин за допомогою функції `getTotalPrice`
+
+```js
+const vehicles = [
+  { make: 'Honda', model: 'CR-V', type: 'suv', price: 24045 },
+  { make: 'Honda', model: 'Accord', type: 'sedan', price: 22455 },
+  { make: 'Mazda', model: 'Mazda 6', type: 'sedan', price: 24195 },
+  { make: 'Mazda', model: 'CX-9', type: 'suv', price: 31520 },
+  { make: 'Toyota', model: '4Runner', type: 'suv', price: 34210 },
+  { make: 'Toyota', model: 'Sequoia', type: 'suv', price: 45560 },
+  { make: 'Toyota', model: 'Tacoma', type: 'truck', price: 24320 },
+  { make: 'Ford', model: 'F-150', type: 'truck', price: 27110 },
+  { make: 'Ford', model: 'Fusion', type: 'sedan', price: 22120 },
+  { make: 'Ford', model: 'Explorer', type: 'suv', price: 31660 },
+];
+function getModels() {}
+function changeModel() {}
+
+function getTotalPrice() {}
+
+getModels(vehicles);
+
+changeModel(vehicles, 'Mazda 6', 'Hello world');
+changeModel(vehicles, 'Fusion', 'AAAAAA');
+changeModel(vehicles, 'F-150', 'BBBBBB');
+
+getTotalPrice(vehicles);
 ```
