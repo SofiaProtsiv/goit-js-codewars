@@ -122,6 +122,9 @@ const stones = [
   { name: 'Діамант', price: 2700, quantity: 3 },
   { name: 'Сапфір', price: 400, quantity: 7 },
   { name: 'Щебінь', price: 200, quantity: 2 },
+
+  console.log(calculateTotalPrice(stones, "Смарагд")); 
+console.log(calculateTotalPrice(stones, "Діамант"));
 ];
 ```
 
