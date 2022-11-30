@@ -55,32 +55,7 @@ printContactsInfo({
 });
 ```
 
-## Example 3 - Глибока деструктуризація
-
-Перепиши функцію так, щоб вона приймала один об'єкт параметрів замість набору
-незалежних аргументів.
-
-```js
-function getBotReport(companyName, repairBots, defenceBots) {
-  return `${companyName} has ${repairBots + defenceBots} bots in stock`;
-}
-
-// Було
-// console.log(getBotReport('Cyberdyne Systems', 150, 50));
-
-// Очікується
-console.log(
-  getBotReport({
-    companyName: 'Cyberdyne Systems',
-    bots: {
-      repair: 150,
-      defence: 50,
-    },
-  })
-); // "Cyberdyne Systems has 200 bots in stock"
-```
-
-## Example 4 - Деструктуризація
+## Example 3 - Деструктуризація
 
 Перепиши функцію так, щоб вона приймала об'єкт параметрів із властивостями
 `companyName` та `stock` та виводила репорт про кількість товарів на складі
@@ -109,6 +84,25 @@ console.log(
     },
   })
 ); // "Belacci has 35 item in stock"
+```
+
+## Example 4 - Операція spread
+
+У нас є об'єкт `salaries` із зарплатами.
+
+Створіть функцію `topSalary (salaries)`, яка повертає ім'я найвищого працівника.
+
+Якщо об'єкт salaries порожній, потрібно повернути null. Якщо кілька
+високооплачуваних співробітників можна повернути будь-якого з них.
+
+`P.S. Використовуйте Object.entries та деструктурування, щоб перебрати пари ключ/значення.`
+
+```js
+let salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 250,
+};
 ```
 
 ## Example 5 - Операція spread
@@ -166,4 +160,57 @@ console.log(
     friendCount: 20,
   })
 );
+```
+
+## Example 8 - mergeObjects
+
+У нас є об'єкт foo i bar, об'єднайте їх в 1 об'єкт і додайте ще 2 властивості в
+новостворений об'єкт:
+
+```js
+  esperanto: 'saluton',
+  korean: 'annyeong'
+```
+
+Очікуваний результат => const newArr = { english: 'howdy', french: 'bonjour',
+japanese: 'konnichiwa', german: 'gutentag', esperanto: 'saluton', korean:
+'annyeong' }
+
+Пояснити що буде з властивістю english в новому об'єкті і як це можна зробити
+без spreed
+
+```js
+const foo = {
+  english: 'hello',
+  french: 'bonjour',
+  japanese: 'konnichiwa',
+};
+const bar = {
+  english: 'howdy',
+  german: 'gutentag',
+};
+```
+
+## Example 9 - Пошук max i min елемента
+
+Напиши функцію `findLargestNumber(numbers)`яка шукає найбільше і найменше число
+в масиві, використай spreed оператор.
+
+```js
+function findLargestNumber(numbers) {}
+
+console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
+console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
+```
+
+## Example 10 - Пошук max i min елемента
+
+Напиши функцію `calculateSumOfNumbers()`яка рахує суму чисел, використай spreed
+оператор.
+
+```js
+function calculateSumOfNumbers() {}
+
+console.log(calculateSumOfNumbers(2, 17, 94, 1, 23, 37)); // 174
+console.log(calculateSumOfNumbers(1, 2, 3, 4, 5)); // 15
 ```

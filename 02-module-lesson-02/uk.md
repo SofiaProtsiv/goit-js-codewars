@@ -73,18 +73,7 @@ printContactsInfo(
 );
 ```
 
-## Example 6 - Пошук найбільшого елемента
-
-Напиши функцію `findLargestNumber(numbers)`яка шукає найбільше число в масиві.
-
-```js
-function findLargestNumber(numbers) {}
-
-console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
-console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
-```
-
-## Example 7 - Середнє значення
+## Example 6 - Середнє значення
 
 Напишіть функцію `calAverage()` яка приймає довільну кількість аргументів і
 повертає їхнє середнє значення. Усі аргументи будуть лише числами.
@@ -97,7 +86,7 @@ console.log(calAverage(14, 8, 2)); // 8
 console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
 ```
 
-## Example 8 - Форматування часу
+## Example 7 - Форматування часу
 
 Напиши функцію `formatTime(minutes)` яка переведе значення `minutes` (кількість
 хвилин) у рядок у форматі годин та хвилин `HH:MM`.
@@ -110,7 +99,7 @@ console.log(formatTime(450)); // "07:30"
 console.log(formatTime(1441)); // "24:01"
 ```
 
-## Example 9 - Колекція курсів (includes, indexOf, push і т. д.)
+## Example 8 - Колекція курсів (includes, indexOf, push і т. д.)
 
 Напишіть функції для роботи з колекцією навчальних курсів `courses`:
 
@@ -133,7 +122,7 @@ updateCourse('Express', 'NestJS');
 console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
 ```
 
-## Example 10
+## Example 9
 
 Напиши скрипт підрахунку вартості гравіювання прикрас. Для цього створи функцію
 calculateEngravingPrice(message, pricePerWord) приймаючу рядок (в рядку будуть
@@ -171,7 +160,7 @@ console.log(
 ); // 120
 ```
 
-## Example 11
+## Example 10
 
 Напиши функцію findLongestWord(string), яка приймає параметром довільний рядок
 (в рядку будуть тільки слова і прогалини) і повертає найдовше слово в цьому
@@ -192,7 +181,7 @@ console.log(findLongestWord('Google do a roll')); // 'Google'
 console.log(findLongestWord('May the force be with you')); // 'force'
 ```
 
-## Example 12
+## Example 11
 
 Напиши функцію formatString(string) яка приймає рядок і форматує його якщо
 необхідно.
@@ -227,7 +216,7 @@ console.log(
 // повернеться форматований рядок
 ```
 
-## Example 13
+## Example 12
 
 Є масив logins з логінами користувачів. Напиши скрипт додавання логіна в масив
 logins. Логін, який додається повинен:
