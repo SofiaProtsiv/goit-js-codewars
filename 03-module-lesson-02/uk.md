@@ -162,7 +162,7 @@ console.log(
 );
 ```
 
-## Example 8 - mergeObjects
+## Example 7 - mergeObjects
 
 У нас є об'єкт foo i bar, об'єднайте їх в 1 об'єкт і додайте ще 2 властивості в
 новостворений об'єкт:
@@ -191,7 +191,7 @@ const bar = {
 };
 ```
 
-## Example 9 - Пошук max i min елемента
+## Example 8 - Пошук max i min елемента
 
 Напиши функцію `findLargestNumber(numbers)`яка шукає найбільше і найменше число
 в масиві, використай spread оператор.
@@ -203,13 +203,143 @@ console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
 console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 ```
 
-## Example 10 - Сумв чисел
-
-Напиши функцію `calculateSumOfNumbers()`яка рахує суму чисел, використай ....
+## Example 9 - Updates the values of the properties
 
 ```js
-function calculateSumOfNumbers() {}
+const user = {};
 
-console.log(calculateSumOfNumbers(2, 17, 94, 1, 23, 37)); // 174
-console.log(calculateSumOfNumbers(1, 2, 3, 4, 5)); // 15
+const createProfile = data => {
+  user{...data};
+  return user
+};
+
+const updateLoginData = () => {};
+
+const deleteProfile = () => {};
+
+console.log(createProfile({ email: 'sofia@gmail.com', password: 'sofia1111' }));
+
+console.log(updateLoginData({ email: 'new@gmail.com' }));
+console.log(updateLoginData({ password: '1111' }));
+
+console.log(deleteProfile());
+```
+
+## Example 10 - hard
+
+You need to use the object with an order to solve the next tasks:
+
+1. Calculate the cost of products by specific type of product (type will be
+   passed as a parameter).
+2. Calculate the original order amount (without discounts).
+3. Calculate the final cost of the order after all discounts have been applied.
+4. Find out the number of different products that have the word “Nike” in the
+   middle of the name (regular expression should be used for it).
+5. Write a function, which will check that a product with some id exists or not
+   in order (id will be passed as a parameter).
+
+Also, the following conditions should be met: ● If the order amount is more than
+$100, free shipping applies. ● If the total number of products is greater than
+or equal to 20, a 13% discount is applied to the order. ● Discount and free
+shipping can be combined together.
+
+```js
+const order = {
+  items: [
+    {
+      id: 248,
+      type: 'shoes',
+      name: 'Puma RS-X',
+      quantity: '3',
+      originalPrice: '120.00',
+    },
+    {
+      id: 220,
+      type: 'shoes',
+      name: 'The Nike Monarch',
+      quantity: '1',
+      originalPrice: '87.50',
+      salePrice: '51.99',
+    },
+    {
+      id: 231,
+      type: 'shoes',
+      name: 'Nike Air Max Plus',
+      quantity: '4',
+      originalPrice: '187.50',
+      salePrice: '151.99',
+    },
+    {
+      id: 389,
+      type: 'clothing',
+      name: 'Puma T-shirt',
+      quantity: '1',
+      originalPrice: '15.99',
+    },
+    {
+      id: 389,
+      type: 'accessories',
+      name: 'Watches TISSOT',
+      quantity: '5',
+      originalPrice: '99.50',
+      salePrice: '89.99',
+    },
+  ],
+  shipping: {
+    id: 'shipping1',
+    name: 'US Delivery',
+    originalPrice: '11.00',
+  },
+};
+
+/**
+ * Calculate the cost of products by category type of product
+ * @param {Array} items - items of order
+ * @param {String} productType  - product category
+ * @returns Total price by product category
+ */
+function calculateProductsAmoutByType() {}
+
+function calculateTotalOrderPrice() {}
+
+/**
+ * Calculate the final cost of the order after all discounts have been applied.
+ * @param {Array} items - items of order
+ * @param {Object} shipping - shipping method
+ * @returns Total cost
+ */
+function calculateTotalOrderPriceAfterDiscout() {
+  const orderAmount = calculateTotalOrderPrice();
+}
+
+/**
+ * Find out the number of different products that have the word {search word} in product name
+ * @param {Array} items - items of order
+ * @param {String} searchWord - search word
+ * @returns Number of orders which exist with search word
+ */
+function findSearchWordInItemName() {}
+
+/**
+ * Check that a product with some id exists or not in order.
+ * @param {Array} items - items of order
+ * @param {Number} searchId - product id
+ * @returns Boolean
+ */
+function isIdIncludesInOrder() {}
+
+console.log(
+  'calculateOfProduct',
+  calculateProductsAmoutByType(order, 'clothing')
+); // 15.99
+console.log('calculateTotalOrderPrice', calculateTotalOrderPrice(order)); // 510.49
+console.log(
+  'calculateTotalOrderPriceAfterDiscout',
+  calculateTotalOrderPriceAfterDiscout(order)
+); // 429.96
+console.log(
+  'findSearchWordInItemName',
+  findSearchWordInItemName(order, 'Nike')
+); // 2
+console.log('isIdIncludesInOrder', isIdIncludesInOrder(order, 389)); // true
 ```

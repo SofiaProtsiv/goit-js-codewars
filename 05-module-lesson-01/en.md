@@ -52,13 +52,13 @@ console.log(
     name: 'Mango',
     email: 'mango@mail.com',
     list: 'friends',
-  }),
+  })
 );
 console.log(
   phonebook.add({
     name: 'Poly',
     email: 'poly@hotmail.com',
-  }),
+  })
 );
 ```
 
