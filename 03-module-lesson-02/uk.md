@@ -208,10 +208,7 @@ console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 ```js
 const user = {};
 
-const createProfile = data => {
-  user{...data};
-  return user
-};
+const createProfile = data => {};
 
 const updateLoginData = () => {};
 
@@ -225,7 +222,7 @@ console.log(updateLoginData({ password: '1111' }));
 console.log(deleteProfile());
 ```
 
-## Example 10 - hard
+## Example 10 - Order, online shop
 
 You need to use the object with an order to solve the next tasks:
 
