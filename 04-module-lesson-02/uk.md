@@ -1,6 +1,6 @@
 # Модуль 4. Заняття 8. Перебираючі методи масиву
 
-# 1 Колекція об'єктів для всіх прикладів з автомобілями
+# Practice 1 - CARS
 
 Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
 `splice` і т. д.) виконують такі операції над масивом об'єктів користувачів із
@@ -140,13 +140,13 @@ const getSortedCarsOnSale = cars => {};
 console.table(getSortedCarsOnSale(cars));
 ```
 
-# 2 ТЗ для USERS
+# Practice 2 - USERS
 
 Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
 `splice` і т. д.) виконують такі операції над масивом об'єктів користувачів із
 файлу [users.js](./users.js).
 
-# Завдання 1
+## Example 1
 
 Отримати масив імен всіх користувачів (поле `name`).
 
@@ -159,7 +159,7 @@ console.log(getUserNames(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 ```
 
-# Завдання 2
+## Example 2
 
 Отримати масив об'єктів користувачів за кольором очей (поле eyeColor).
 
@@ -171,7 +171,7 @@ const getUsersWithEyeColor = (users, color) => {
 console.log(getUsersWithEyeColor(users, 'blue')); // [об'єкт Moore Hensley, об'єкт Sharlene Bush, об'єкт Carey Barr]
 ```
 
-# Завдання 3
+## Example 3
 
 Отримати масив імен користувачів за статтю (поле `gender`).
 
@@ -183,7 +183,7 @@ const getUsersWithGender = (users, gender) => {
 console.log(getUsersWithGender(users, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
 ```
 
-# Завдання 4
+## Example 4
 
 Отримати масив лише неактивних користувачів (поле `isActive`).
 
@@ -195,7 +195,7 @@ const getInactiveUsers = users => {
 console.log(getInactiveUsers(users)); // [об'єкт Moore Hensley, об'єкт Ross Vazquez, об'єкт Blackburn Dotson]
 ```
 
-# Завдання 5
+## Example 5
 
 Отримати користувача (не масив) по `email` (поле `email`, він унікальний).
 
@@ -208,7 +208,7 @@ console.log(getUserWithEmail(users, 'shereeanthony@kog.com')); // {об'єкт �
 console.log(getUserWithEmail(users, 'elmahead@omatom.com')); // {об'єкт користувача Elma Head}
 ```
 
-# Завдання 6
+## Example 6
 
 Отримати масив користувачів які у вікову категорію від `min` до `max` років
 (поле `age`).
@@ -224,7 +224,7 @@ console.log(getUsersWithAge(users, 30, 40));
 // [об'єкт Moore Hensley, об'єкт Sharlene Bush, об'єкт Blackburn Dotson, об'єкт Sheree Anthony]
 ```
 
-# Завдання 7
+## Example 7
 
 Отримати загальну суму балансу (поле `balance`) всіх користувачів.
 
@@ -236,7 +236,7 @@ const calculateTotalBalance = users => {
 console.log(calculateTotalBalance(users)); // 20916
 ```
 
-# Завдання 8
+## Example 8
 
 Масив імен всіх користувачів, у яких є один із зазначеним ім'ям.
 
@@ -249,7 +249,7 @@ console.log(getUsersWithFriend(users, 'Briana Decker')); // [ 'Sharlene Bush', '
 console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sheree Anthony' ]
 ```
 
-# Завдання 9
+## Example 9
 
 Масив імен (поле `name`) людей, відсортованих залежно від кількості їх друзів
 (поле `friends`)
@@ -263,7 +263,7 @@ console.log(getNamesSortedByFriendsCount(users));
 // [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
 ```
 
-# Завдання 10
+## Example 10
 
 Отримати масив усіх умінь всіх користувачів (поле `skills`), при цьому не має
 бути повторюваних умінь і вони повинні бути відсортовані в алфавітному порядку.
@@ -277,7 +277,7 @@ console.log(getSortedUniqueSkills(users));
 // ['adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit' , 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam'
 ```
 
-# 3 ТЗ для Characters
+# Practice 3 - CHARACTERS
 
 ## MAP
 
