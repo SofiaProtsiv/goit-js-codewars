@@ -142,7 +142,7 @@ function generateId() {
 function transformUsername() {}
 
 console.log(
-  transformId({
+  transformUsername({
     id: 1,
     firstName: 'Jacob',
     lastName: 'Mercer',
@@ -152,7 +152,7 @@ console.log(
 );
 
 console.log(
-  transformId({
+  transformUsername({
     id: 2,
     firstName: 'Adrian',
     lastName: 'Cross',
@@ -194,7 +194,7 @@ const bar = {
 ## Example 9 - Пошук max i min елемента
 
 Напиши функцію `findLargestNumber(numbers)`яка шукає найбільше і найменше число
-в масиві, використай spreed оператор.
+в масиві, використай spread оператор.
 
 ```js
 function findLargestNumber(numbers) {}

@@ -13,17 +13,31 @@
 //   includes(['Earth', 'Mars', 'Venus', 'Jupiter', 'Saturn'], 'Jupiter')
 // );
 
-function calculateSumOfNumbers(...numbers) {
-  let total = 0;
-  for (const iterator of numbers) {
-    total += iterator;
-  }
-  return total;
-}
+// function calculateSumOfNumbers(...numbers) {
+//   let total = 0;
+//   for (const iterator of numbers) {
+//     total += iterator;
+//   }
+//   return total;
+// }
 
-console.log(calculateSumOfNumbers(2, 17, 94, 1, 23, 37)); // 94
-console.log(calculateSumOfNumbers(1, 2, 3, 4, 5)); // 15
+// console.log(calculateSumOfNumbers(2, 17, 94, 1, 23, 37)); // 94
+// console.log(calculateSumOfNumbers(1, 2, 3, 4, 5)); // 15
 
+// let data = {
+//   email: '',
+//   password: '',
+// };
+// console.log(data);
+// function login(loginData) {
+//   data = {
+//     ...loginData,
+//   };
+//   return data;
+// }
+// console.log(login({ email: 'sofia', password: '1111' }));
+
+// console.log(data);
 // const foo = {
 //   english: 'hello',
 //   french: 'bonjour',

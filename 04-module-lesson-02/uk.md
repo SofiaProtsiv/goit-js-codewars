@@ -1,91 +1,10 @@
 # Модуль 4. Заняття 8. Перебираючі методи масиву
 
-## Колекція об'єктів для всіх прикладів з автомобілями
+# 1 Колекція об'єктів для всіх прикладів з автомобілями
 
-```js
-const cars = [
-  {
-    make: 'Honda',
-    model: 'CR-V',
-    type: 'suv',
-    amount: 14,
-    price: 24045,
-    onSale: true,
-  },
-  {
-    make: 'Honda',
-    model: 'Accord',
-    type: 'sedan',
-    amount: 2,
-    price: 22455,
-    onSale: true,
-  },
-  {
-    make: 'Mazda',
-    model: 'Mazda 6',
-    type: 'sedan',
-    amount: 8,
-    price: 24195,
-    onSale: false,
-  },
-  {
-    make: 'Mazda',
-    model: 'CX-9',
-    type: 'suv',
-    amount: 7,
-    price: 31520,
-    onSale: true,
-  },
-  {
-    make: 'Toyota',
-    model: '4Runner',
-    type: 'suv',
-    amount: 19,
-    price: 34210,
-    onSale: false,
-  },
-  {
-    make: 'Toyota',
-    model: 'Sequoia',
-    type: 'suv',
-    amount: 16,
-    price: 45560,
-    onSale: false,
-  },
-  {
-    make: 'Toyota',
-    model: 'Tacoma',
-    type: 'truck',
-    amount: 4,
-    price: 24320,
-    onSale: true,
-  },
-  {
-    make: 'Ford',
-    model: 'F-150',
-    type: 'truck',
-    amount: 11,
-    price: 27110,
-    onSale: true,
-  },
-  {
-    make: 'Ford',
-    model: 'Fusion',
-    type: 'sedan',
-    amount: 13,
-    price: 22120,
-    onSale: true,
-  },
-  {
-    make: 'Ford',
-    model: 'Explorer',
-    type: 'suv',
-    amount: 6,
-    price: 31660,
-    onSale: false,
-  },
-];
-```
+Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
+`splice` і т. д.) виконують такі операції над масивом об'єктів користувачів із
+файлу [cars.js](./cars.js).
 
 ## Example 1 - Метод map
 
@@ -221,7 +140,7 @@ const getSortedCarsOnSale = cars => {};
 console.table(getSortedCarsOnSale(cars));
 ```
 
-# ТЗ для USERS
+# 2 ТЗ для USERS
 
 Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
 `splice` і т. д.) виконують такі операції над масивом об'єктів користувачів із
@@ -357,3 +276,47 @@ const getSortedUniqueSkills = users => {
 console.log(getSortedUniqueSkills(users));
 // ['adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit' , 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam'
 ```
+
+# 3 ТЗ для Characters
+
+## MAP
+
+1. Get an array of all names
+2. Get an array of all heights
+3. Get an array of objects with just name and height properties
+4. Get an array of all first names
+
+## REDUCE
+
+1. Get the total mass of all characters
+2. Get the total height of all characters
+3. Get the total number of characters in all the character names
+4. Get the total number of characters by eye color (hint. a map of eye color to
+   count)
+
+## FILTER
+
+1. Get characters with mass greater than 100
+2. Get characters with height less than 200
+3. Get all male characters Get all female characters
+
+## SORT
+
+1. Sort by name
+2. Sort by mass
+3. Sort by height
+4. Sort by gender
+
+## EVERY
+
+1. Does every character have blue eyes?
+2. Does every character have mass more than 40?
+3. Is every character shorter than 200?
+4. Is every character male?
+
+## SOME
+
+1. Is there at least one male character?
+2. Is there at least one character with blue eyes?
+3. Is there at least one character taller than 200?
+4. Is there at least one character that has mass less than 50?
