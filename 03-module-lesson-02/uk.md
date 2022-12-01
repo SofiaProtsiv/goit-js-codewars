@@ -238,10 +238,12 @@ You need to use the object with an order to solve the next tasks:
 5. Write a function, which will check that a product with some id exists or not
    in order (id will be passed as a parameter).
 
-Also, the following conditions should be met: ● If the order amount is more than
-$100, free shipping applies. ● If the total number of products is greater than
-or equal to 20, a 13% discount is applied to the order. ● Discount and free
-shipping can be combined together.
+Also, the following conditions should be met:
+
+- If the order amount is more than $100, free shipping applies.
+- If the total number of products is greater than or equal to 20, a 13% discount
+  is applied to the order.
+- Discount and free shipping can be combined together.
 
 ```js
 const order = {
