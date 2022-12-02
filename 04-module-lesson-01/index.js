@@ -155,16 +155,51 @@
 
 // console.log(groupBy(input, objectEl => isOdd(objectEl.yearOfBirth)));
 
-const products = ['apple', 'apple', 'banana', 'banana', 'avocado', 'cherry'];
+// const products = ['apple', 'apple', 'banana', 'banana', 'avocado', 'cherry'];
 
-const countProducts = products => {
-  const groupBasket = {};
+// const countProducts = products => {
+//   const groupBasket = {};
 
-  products.forEach(product => {
-    groupBasket[product] = (groupBasket[product] || 0) + 1;
-  });
+//   products.forEach(product => {
+//     groupBasket[product]
+//       ? (groupBasket[product] += 1)
+//       : (groupBasket[product] = 1);
 
-  return groupBasket;
-};
+//     // groupBasket[product] = (groupBasket[product] || 0) + 1;
+//   });
 
-console.log(countProducts(products));
+//   return groupBasket;
+// };
+
+// console.log(countProducts(products));
+
+// function vowelCount(str) {
+//   var splitArr = str.toLowerCase().split('');
+//   var obj = {};
+//   var vowels = 'aeiou';
+
+//   splitArr.forEach(function (letter) {
+//     if (vowels.includes(letter)) {
+//       if (obj[letter]) {
+//         obj[letter]++;
+//       } else {
+//         obj[letter] = 1;
+//       }
+//     }
+//   });
+//   return obj;
+// }
+
+// function addKeyAndValue(arr, { key, value }) {
+//   arr.forEach(object => {
+//     object[key] = value;
+//   });
+//   return arr;
+// }
+
+// console.log(
+//   addKeyAndValue(
+//     [{ name: 'Elie' }, { name: 'Tim' }, { name: 'Matt' }, { name: 'Colt' }],
+//     { key: 'title', value: 'instructor' }
+//   )
+// );

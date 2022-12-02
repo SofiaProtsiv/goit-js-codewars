@@ -442,17 +442,24 @@ const order = {
  */
 function calculateProductsAmoutByType({ items }, productType) {
   let acc = 0;
-  for (const { originalPrice, type } of items) {
+  // for (const { originalPrice, type } of items) {
+  //   type === productType ? (acc += Number(originalPrice)) : (acc += 0);
+  // }
+  items.forEach(({ originalPrice, type }) => {
     type === productType ? (acc += Number(originalPrice)) : (acc += 0);
-  }
+  });
+
   return acc;
 }
 
 function calculateTotalOrderPrice({ items }) {
   let acc = 0;
-  for (const { originalPrice } of items) {
+  // for (const { originalPrice } of items) {
+  //   acc += Number(originalPrice);
+  // }
+  items.forEach(({ originalPrice }) => {
     acc += Number(originalPrice);
-  }
+  });
   return acc;
 }
 

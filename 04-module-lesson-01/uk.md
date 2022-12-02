@@ -139,7 +139,7 @@ const employees = [
 ];
 ```
 
-## Example 6 - Count products
+## Example 6 - Count products \*\*
 
 Підрахуй і виведи новий об'єкт в якому буде підпраховано скільки яких продуктів
 в масиві `products`
@@ -160,7 +160,37 @@ const countProducts = products => {
 }
 ```
 
-## Example 7 - groupBy()
+## Example 7 - Count vowel
+
+Напишіть функцію під назвою `vowelCount`, яка приймає рядок і повертає об’єкт із
+ключами як голосною та значеннями як кількість разів, коли голосна з’являється в
+рядку. Ця функція має бути нечутливою до регістру, тому мають враховуватися малі
+та великі літери
+
+```js
+console.log(vowelCount('Elie')); // {e:2,i:1};
+console.log(vowelCount('Tim')); // {i:1};
+console.log(vowelCount('Matt')); // {a:1})
+console.log(vowelCount('hmmm')); // {};
+console.log(vowelCount('I Am awesome and so are you')); // {i: 1, a: 4, e: 3, o: 3, u: 1};
+```
+
+## Example 8 - Add Key And Value
+
+Напишіть функцію під назвою `addKeyAndValue`, яка приймає масив об’єктів, та
+обєкт ключ,значення в результаті повертає масив, переданий у функцію з новим
+ключем і значенням, доданим для кожного об’єкта
+
+```js
+console.log(
+  addKeyAndValue(
+    [{ name: 'Elie' }, { name: 'Tim' }, { name: 'Matt' }, { name: 'Colt' }],
+    { key: 'title', value: 'instructor' }
+  )
+); // [{name: 'Elie', title:'instructor'}, {name: 'Tim', title:'instructor'}, {name: 'Matt', title:'instructor'}, {name: 'Colt', title:'instructor'}]
+```
+
+## Example 9 - groupBy()
 
 Напишіть функцію `groupBy()`, яка групує елементи з масиву за значенням, що
 повертається зворотним викликом, коли елемент із масиву передається як аргумент.
