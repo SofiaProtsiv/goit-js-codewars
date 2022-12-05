@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style type="text/css">
+    .container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .card-deck {
+      display: flex;
+      gap: 3rem;
+      text-align: center;
+    }
+    .card {
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.25rem;
+    }
+    .card-header {
+      padding: 0.75rem 1.25rem;
+      margin: 0;
+      background-color: rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+      font-weight: 400;
+    }
+    .card-body {
+      flex: 1 1 auto;
+      padding: 1.25rem;
+    }
+    .pricing-card-title {
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+    .pricing {
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .list {
+      padding-left: 0;
+      list-style: none;
+      margin: 1rem 0;
+    }
+    .storage-amount {
+      word-wrap: break-word;
+    }
+    .btn,
+    .btn-new {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      border-radius: 0.3rem;
+      color: #007bff;
+      background-color: transparent;
+      background-image: none;
+      border-color: #007bff;
+      cursor: pointer;
+      font-weight: 400;
+      text-align: center;
+    }
+    .btn-new {
+      background-color: #007bff;
+      color: #ffffff;
+    }
+    .select {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    label {
+      font-size: 1.3rem;
+      font-weight: 500;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+    input {
+      display: none;
+    }
+    .checked {
+      color: #007bff;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="card-deck text-center">
+        <div id="pro-plan" class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h3 class="my-0 font-weight-normal">Pro</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title pricing-card-title">
+              $<span class="pricing">30 / month</span>
+            </h4>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>100 users included</li>
+              <li><span class="storage-amount">20</span> GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn-lg btn-block btn-outline-primary"
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
+        <div id="basic-plan" class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h3 class="my-0 font-weight-normal">Basic</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title pricing-card-title">
+              $<span class="pricing">10 / month</span>
+            </h4>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 users included</li>
+              <li><span class="storage-amount">2</span> GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button
+              type="button"
+              class="btn btn-lg btn-block btn-outline-primary"
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
