@@ -64,40 +64,91 @@
 //   console.log(calculator.sum());
 //   console.log(calculator.mult());
 
-// const phonebook = {
-//   contacts: [],
-//   add(contact) {
-//     const newContact = {
-//       list: 'default',
-//       ...contact,
-//       id: this.generateId(),
-//       createdAt: this.getDate(),
-//     };
-//     this.contacts.push(newContact);
-//     return this.contacts;
-//   },
-//   generateId() {
-//     return '_' + Math.random().toString(36).substr(2, 9);
-//   },
-//   getDate() {
-//     return new Date();
-//   },
-// };
+const phonebook = {
+  contacts: [],
+  getContacts() {
+    return this.contacts;
+  },
+  add(contact) {
+    const newContact = {
+      list: 'default',
+      ...contact,
+      id: this.generateId(),
+      createdAt: this.getDate(),
+    };
+    this.contacts.push(newContact);
+    return this.contacts;
+  },
+  update(contactNameToUpdate, newContactData) {
+    this.contacts.find(contact => {
+      if (contact.name === contactNameToUpdate) {
+        Object.assign(contact, newContactData);
+      }
+    });
 
-// console.log(
-//   phonebook.add({
-//     name: 'Mango',
-//     email: 'mango@mail.com',
-//     list: 'friends',
-//   })
-// );
-// console.log(
-//   phonebook.add({
-//     name: 'Poly',
-//     email: 'poly@hotmail.com',
-//   })
-// );
+    // for (const contact of this.contacts) {
+    //   if (contact.name === contactNameToUpdate) {
+    //     Object.assign(contact, newContactData);
+    //   }
+    // }
+    return this.contacts;
+  },
+  delete(contactName) {
+    const indexToRemove = this.contacts.findIndex(
+      contact => contact.name === contactName
+    );
+    this.contacts.splice(indexToRemove, 1);
 
+    // for (const contact of this.contacts) {
+    //   const indexToRemove = this.contacts.indexOf(contact);
+    //   if (contact.name === contactName) {
+    //     this.contacts.splice(indexToRemove, 1);
+    //   }
+    // }
+    return this.contacts;
+  },
+  generateId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  },
+  getDate() {
+    return new Date();
+  },
+};
+
+phonebook.add({
+  name: 'Sofia',
+  phone: '+380786387268',
+  list: 'friends',
+  img: '👩🏼',
+  favorite: true,
+});
+phonebook.add({
+  name: 'Marina',
+  phone: '+3806578454533',
+});
+phonebook.add({
+  name: 'Poly',
+  phone: '+380657845543',
+  img: '👩🏼‍🔧',
+});
+console.table(phonebook.getContacts());
+
+phonebook.update('Poly', {
+  name: 'Polina',
+  phone: '+380657845543',
+  img: '👩🏼‍🎤',
+  list: 'family',
+  favorite: true,
+});
+console.table(phonebook.getContacts());
+
+phonebook.delete('Marina');
+console.table(phonebook.getContacts());
+///
+
+//
+///
+//
 // const Transaction = {
 //   DEPOSIT: 'deposit',
 //   WITHDRAW: 'withdraw',
