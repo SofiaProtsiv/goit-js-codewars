@@ -448,23 +448,101 @@ const getAllFemaleCharacters = characters =>
 
 // console.log(getAllFemaleCharacters(characters));
 
-// ## SORT
+/**
+ * Calculate the cost of products by category type of product
+ * @param {Array} items - items of order
+ * @param {String} productType  - product category
+ * @returns Total price by product category
+ */
+function calculateProductsAmoutByType({ items }, productType) {
+  return items.reduce(
+    (acc, { originalPrice, type }) =>
+      type === productType ? acc + Number(originalPrice) : acc + 0,
+    0
+  );
+}
 
-// 1. Sort by name
-// 2. Sort by mass
-// 3. Sort by height
-// 4. Sort by gender
+function calculateTotalOrderPrice({ items }) {
+  return items.reduce(
+    (acc, { originalPrice }) => acc + Number(originalPrice),
+    0
+  );
+}
 
-// ## EVERY
+/**
+ * Calculate the final cost of the order after all discounts have been applied.
+ * @param {Array} items - items of order
+ * @param {Object} shipping - shipping method
+ * @returns Total cost
+ */
+function calculateTotalOrderPriceAfterDiscout({ items, shipping }) {
+  const orderAmount = calculateTotalOrderPrice({ items });
+  const discountAmount = items
+    .filter(item => {
+      if (item.salePrice) {
+        return item;
+      }
+    })
+    .reduce(
+      (acc, { salePrice, originalPrice }) =>
+        acc + Number(originalPrice - salePrice),
+      0
+    );
 
-// 1. Does every character have blue eyes?
-// 2. Does every character have mass more than 40?
-// 3. Is every character shorter than 200?
-// 4. Is every character male?
+  let totalOrderPriceAfterDiscout = Number(
+    (orderAmount - discountAmount).toFixed(2)
+  );
 
-// ## SOME
+  totalOrderPriceAfterDiscout =
+    items.length >= 20
+      ? (totalOrderPriceAfterDiscout / 100) * 13
+      : totalOrderPriceAfterDiscout;
 
-// 1. Is there at least one male character?
-// 2. Is there at least one character with blue eyes?
-// 3. Is there at least one character taller than 200?
-// 4. Is there at least one character that has mass less than 50?
+  totalOrderPriceAfterDiscout > 100
+    ? totalOrderPriceAfterDiscout
+    : (totalOrderPriceAfterDiscout += Number(shipping.originalPrice));
+
+  return totalOrderPriceAfterDiscout;
+}
+
+/**
+ * Find out the number of different products that have the word {search word} in product name
+ * @param {Array} items - items of order
+ * @param {String} searchWord - search word
+ * @returns Number of orders which exist with search word
+ */
+function findSearchWordInItemName({ items }, searchWord) {
+  const matchProducts = items.filter(item => {
+    const regExp = new RegExp(searchWord, 'i');
+    if (item.name.match(regExp)) {
+      return item;
+    }
+  });
+  return matchProducts.length;
+}
+
+/**
+ * Check that a product with some id exists or not in order.
+ * @param {Array} items - items of order
+ * @param {Number} searchId - product id
+ * @returns Boolean
+ */
+function isIdIncludesInOrder({ items }, searchId) {
+  const result = !!items.find(({ id }) => id === searchId);
+  return result;
+}
+
+console.log(
+  'calculateOfProduct',
+  calculateProductsAmoutByType(order, 'clothing')
+);
+console.log('calculateTotalOrderPrice', calculateTotalOrderPrice(order));
+console.log(
+  'calculateTotalOrderPriceAfterDiscout',
+  calculateTotalOrderPriceAfterDiscout(order)
+);
+console.log(
+  'findSearchWordInItemName',
+  findSearchWordInItemName(order, 'Nike')
+);
+console.log('isIdIncludesInOrder', isIdIncludesInOrder(order, 389));
