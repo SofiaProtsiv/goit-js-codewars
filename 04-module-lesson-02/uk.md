@@ -278,9 +278,10 @@ console.log(getSortedUniqueSkills(users));
 ```
 
 # Practice 3 - CHARACTERS
+
 Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
-`splice` і т. д.) виконують такі операції над масивом об'єктів героїв із
-файлу [characters.js](./characters.js).
+`splice` і т. д.) виконують такі операції над масивом об'єктів героїв із файлу
+[characters.js](./characters.js).
 
 ## MAP
 
@@ -324,11 +325,11 @@ console.log(getSortedUniqueSkills(users));
 3. Is there at least one character taller than 200?
 4. Is there at least one character that has mass less than 50?
 
-
 ## Practive 4 - ORDER
+
 Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
-`splice` і т. д.) виконують такі операції над масивом об'єктів героїв із
-файлу [order.js](./order.js.
+`splice` і т. д.) виконують такі операції над масивом об'єктів героїв із файлу
+[order.js](./order.js).
 
 ```js
 /**
