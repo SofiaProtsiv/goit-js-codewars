@@ -323,3 +323,62 @@ console.log(getSortedUniqueSkills(users));
 2. Is there at least one character with blue eyes?
 3. Is there at least one character taller than 200?
 4. Is there at least one character that has mass less than 50?
+
+
+## Practive 4 - ORDER
+Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
+`splice` і т. д.) виконують такі операції над масивом об'єктів героїв із
+файлу [order.js](./order.js.
+
+```js
+/**
+ * Calculate the cost of products by category type of product
+ * @param {Array} items - items of order
+ * @param {String} productType  - product category
+ * @returns Total price by product category
+ */
+function calculateProductsAmoutByType() {}
+
+function calculateTotalOrderPrice() {}
+
+/**
+ * Calculate the final cost of the order after all discounts have been applied.
+ * @param {Array} items - items of order
+ * @param {Object} shipping - shipping method
+ * @returns Total cost
+ */
+function calculateTotalOrderPriceAfterDiscout() {
+  const orderAmount = calculateTotalOrderPrice();
+}
+
+/**
+ * Find out the number of different products that have the word {search word} in product name
+ * @param {Array} items - items of order
+ * @param {String} searchWord - search word
+ * @returns Number of orders which exist with search word
+ */
+function findSearchWordInItemName() {}
+
+/**
+ * Check that a product with some id exists or not in order.
+ * @param {Array} items - items of order
+ * @param {Number} searchId - product id
+ * @returns Boolean
+ */
+function isIdIncludesInOrder() {}
+
+console.log(
+  'calculateOfProduct',
+  calculateProductsAmoutByType(order, 'clothing')
+); // 15.99
+console.log('calculateTotalOrderPrice', calculateTotalOrderPrice(order)); // 510.49
+console.log(
+  'calculateTotalOrderPriceAfterDiscout',
+  calculateTotalOrderPriceAfterDiscout(order)
+); // 429.96
+console.log(
+  'findSearchWordInItemName',
+  findSearchWordInItemName(order, 'Nike')
+); // 2
+console.log('isIdIncludesInOrder', isIdIncludesInOrder(order, 389)); // true
+```
