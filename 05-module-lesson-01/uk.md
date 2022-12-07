@@ -30,6 +30,37 @@ console.log(account.balance); // 19000
 console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3', 'order-4']
 ```
 
+## Example 2 - Що виведеться в консоль?
+
+```js
+const directRoute = function (to = 'Chop') {
+  console.log(`${this.from} => ${to}`);
+};
+
+const train1 = {
+  from: 'Kyiv',
+  directRoute,
+};
+const train2 = {
+  from: 'Lviv',
+  directRoute,
+};
+
+directRoute.apply(train1, ['Vinnytsia']);
+directRoute.call(train1);
+train2.directRoute();
+train1.directRoute.call(train2, 'Odessa');
+
+const yourDirectRoute = directRoute.bind(train1);
+yourDirectRoute();
+yourDirectRoute('Kharkiv');
+
+const theirDirectRoute = directRoute.bind(train2, 'Poltava');
+theirDirectRoute();
+theirDirectRoute('Cherkasy');
+theirDirectRoute.call(train1);
+```
+
 ## Example 2 - Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
 
 ```js
@@ -65,6 +96,24 @@ invokeInventoryAction('Gas mask', inventory.remove);
 console.log(inventory.items); // ['Knife', 'Medkit']
 ```
 
+## Example 3 - Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
+
+```js
+const car = {
+  registrationNumber: 'GA12345',
+  brand: 'Toyota',
+};
+
+const displayDetails = ownerName =>{
+  console.log(
+    `${ownerName}, this is your car: ${this.registrationNumber} ${this.brand}`
+  );
+}
+
+displayDetails.('Sofia');
+displayDetails.('Sofia');
+```
+
 ## Example 3 - Калькулятор
 
 Створіть об'єкт `calculator` з трьома методами:
@@ -77,44 +126,62 @@ console.log(inventory.items); // ['Knife', 'Medkit']
 const calculator = {};
 ```
 
-## Example 4 - Майстерня коштовностей
+## Example 4 - Корзина товарів
 
-- Напишіть метод `calcTotalPriceByType(stoneName)`, який приймає назву каменю і
-  розраховує та повертає загальну вартість каменів з таким ім'ям, ціною та
-  кількістю з властивості `stones`.
-- Напишіть метод `calcTotalPrice()`, який розраховує та повертає загальну
-  вартість каменів.
-- Напишіть метод `removeStone(stoneName)`, який приймає назву каменю і видаляє
-  його з `stones` та повертає оновлений масив.
-- Напишіть метод `updateStone(stoneName, data)`, який приймає назву каменю і
-  об'єкт з даними, які треба оновити у елементі з таким stoneName, повертає
-  оновлений масив.
+- getItems() - отримати корзину товарів, усі товари
+- add(product) - додати у корзину об'єкт продукта
+- remove(productName) - повністю видалити продукт під назвою productName
+- clear() - повністю очистити корзину товарів
+- countTotalPrice() - порахувати суму замовлення
+- increaseQuantity(productName) - збільшити кількість продукта під назвою
+  productName
+- decreaseQuantity(productName) - зменшити кількість продукта під назвою
+  productName
 
 ```js
-const chopShop = {
-  stones: [
-    { name: 'Emerald', price: 1300, quantity: 4 },
-    { name: 'Diamond', price: 2700, quantity: 3 },
-    { name: 'Sapphire', price: 1400, quantity: 7 },
-    { name: 'Ruby', price: 800, quantity: 2 },
-  ],
-  calcTotalPriceByType(stoneName) {},
-  calcTotalPrice() {},
-  removeStone(stoneName) {},
-  updateStone(stoneName, data) {},
+const cart = {
+  items: [],
+
+  getItems() {},
+  add(product) {},
+  remove(productName) {},
+  clear() {},
+  countTotalPrice() {},
+  increaseQuantity(productName) {},
+  decreaseQuantity(productName) {},
 };
 
-console.log('calcTotalPriceByType', chopShop.calcTotalPriceByType('Emerald')); // 5200
-console.log('calcTotalPrice', chopShop.calcTotalPrice()); // 24700
-console.log('After Emerald remove', chopShop.removeStone('Emerald'));
-console.log(
-  'updateStone',
-  chopShop.updateStone('Sapphire', {
-    name: 'Sapphir',
-    quantity: 10,
-    inStock: false,
-  })
-);
+const apple = { name: '🍎', price: 50 };
+const grape = { name: '🍇', price: 70 };
+const lemon = { name: '🍋', price: 60 };
+const strawberry = { name: '🍓', price: 110 };
+
+console.table(cart.getItems());
+
+cart.add(apple);
+cart.add(apple);
+cart.add(apple);
+cart.add(grape);
+cart.add(grape);
+cart.add(grape);
+cart.add(lemon);
+cart.add(lemon);
+cart.add(strawberry);
+cart.add(strawberry);
+
+console.table(cart.getItems());
+
+cart.remove('🍎');
+console.table(cart.getItems());
+
+console.log(cart.clear());
+console.table(cart.getItems());
+
+cart.add(apple);
+cart.increaseQuantity('🍎');
+console.table(cart.getItems());
+
+console.log('Total: ', cart.countTotalPrice());
 ```
 
 ## Example 5 - Телефонна книга
@@ -184,11 +251,14 @@ const account = {
   // Історія транзакцій
   transactions: [],
 
+  // Останній id транзакції
+  lastTransactionId: 0,
+
   /*
    * Метод створює та повертає об'єкт транзакції.
-   * Приймає суму та тип транзакції.
+   * Приймає суму, id та тип транзакції.
    */
-  createTransaction(amount, type) {},
+  createTransaction(amount, type, id) {},
 
   /*
    * Метод, що відповідає за додавання суми до балансу.
@@ -225,4 +295,27 @@ const account = {
    */
   getTransactionTotal(type) {},
 };
+
+account.deposit(100);
+console.log(account.getBalance());
+account.deposit(10);
+console.log(account.getBalance());
+account.withdraw(20);
+console.log(account.getBalance());
+account.withdraw(40);
+console.log(account.getBalance());
+
+console.log('Transaction 1: ');
+console.log(account.getTransactionDetails(1));
+console.log('Transaction 2: ');
+console.log(account.getTransactionDetails(2));
+console.log('Transaction 3: ');
+console.log(account.getTransactionDetails(3));
+console.log('Transaction 4: ');
+console.log(account.getTransactionDetails(4));
+
+console.log(
+  'Withdrawals: ' + account.getTransactionTotal(Transaction.WITHDRAW)
+);
+console.log('Deposits: ' + account.getTransactionTotal(Transaction.DEPOSIT));
 ```

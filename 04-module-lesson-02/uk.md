@@ -278,6 +278,9 @@ console.log(getSortedUniqueSkills(users));
 ```
 
 # Practice 3 - CHARACTERS
+Напиши функції які за допомогою методів масиву, що перебирають (жодних `for`,
+`splice` і т. д.) виконують такі операції над масивом об'єктів героїв із
+файлу [characters.js](./characters.js).
 
 ## MAP
 
