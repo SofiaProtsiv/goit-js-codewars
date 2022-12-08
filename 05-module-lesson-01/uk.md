@@ -59,9 +59,12 @@ const theirDirectRoute = directRoute.bind(train2, 'Poltava');
 theirDirectRoute();
 theirDirectRoute('Cherkasy');
 theirDirectRoute.call(train1);
+
+const anotherDirectRoute = train1.directRoute;
+console.log(anotherDirectRoute());
 ```
 
-## Example 2 - Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
+## Example 3 - Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
 
 ```js
 const inventory = {
@@ -96,7 +99,7 @@ invokeInventoryAction('Gas mask', inventory.remove);
 console.log(inventory.items); // ['Knife', 'Medkit']
 ```
 
-## Example 3 - Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
+## Example 4 - Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
 
 ```js
 const car = {
@@ -114,7 +117,7 @@ displayDetails.('Sofia');
 displayDetails.('Sofia');
 ```
 
-## Example 4 - Калькулятор
+## Example 5 - Калькулятор
 
 Створіть об'єкт `calculator` з трьома методами:
 
@@ -126,7 +129,7 @@ displayDetails.('Sofia');
 const calculator = {};
 ```
 
-## Example 5 - Телефонна книга
+## Example 6 - Телефонна книга
 
 Напиши метод `add()`, який приймає об'єкт юзера і додає його в список контактів
 `contacts`. На виході метод add повертає масив об'єктів(contacts) з доданими
@@ -185,7 +188,7 @@ phonebook.delete('Marina');
 console.table(phonebook.getContacts());
 ```
 
-## Example 6 - Корзина товарів
+## Example 7 - Корзина товарів
 
 - getItems() - отримати корзину товарів, усі товари
 - add(product) - додати у корзину об'єкт продукта
@@ -243,7 +246,7 @@ console.table(cart.getItems());
 console.log('Total: ', cart.countTotalPrice());
 ```
 
-## Example 7 - Комплексні завдання
+## Example 8 - Комплексні завдання
 
 Напиши скрипт управління особистим кабінетом інтернет банку. Є об'єкт `account`
 в якому необхідно реалізувати методи для роботи з балансом та історією

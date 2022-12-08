@@ -1,3 +1,5 @@
+import { sliderItems } from './slider.js';
+
 // const taskInput = document.getElementById('new-task'); //Add a new task.
 // const addButton = document.querySelector('button.add'); //first button
 // const editButton = document.querySelectorAll('button.edit'); //first button
@@ -127,3 +129,61 @@
 //   ul.append(li);
 //   prevstate += 1;
 // });
+
+// const styleBtn = document.querySelector('#style');
+// const body = document.querySelector('body');
+// function styleBG() {
+//   body.style.background = arrayRandomElement(arr);
+// }
+// styleBtn.addEventListener('click', styleBG);
+// function arrayRandomElement(arr) {
+//   const randomColor = Math.floor(Math.random() * arr.length);
+//   return arr[randomColor];
+// }
+// const arr = [
+//   'white',
+//   'blue',
+//   'red',
+//   'green',
+//   'yellow',
+//   'orange',
+//   'purple',
+//   'pink',
+//   'grey',
+//   'tomato',
+// ];
+
+const sliderDiv = document.querySelector('.slider');
+const buttonNext = document.querySelector('#next');
+const buttonPrevius = document.querySelector('#previus');
+
+let prevImage = 1;
+
+function slider(event) {
+  if (event.target.id === 'next') {
+    prevImage >= sliderItems.length - 1 ? (prevImage = 0) : (prevImage += 1);
+    const newImage = sliderItems[prevImage];
+    createdMarkup(newImage);
+    destroyPreviusMarkup();
+  } else {
+    prevImage -= 1;
+    prevImage <= 0 ? (prevImage = sliderItems.length - 1) : (prevImage -= 1);
+    const newImage = sliderItems[prevImage];
+    createdMarkup(newImage);
+    destroyPreviusMarkup();
+  }
+}
+function destroyPreviusMarkup() {
+  const images = document.getElementsByTagName('img');
+  images[0] && images[0].parentNode.removeChild(images[0]);
+}
+function createdMarkup({ preview, description }) {
+  const img = document.createElement('img');
+  img.src = preview;
+  img.alt = description;
+  sliderDiv.append(img);
+}
+createdMarkup(sliderItems[0]);
+
+buttonNext.addEventListener('click', slider);
+buttonPrevius.addEventListener('click', slider);

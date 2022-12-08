@@ -2,6 +2,35 @@
 
 ## Example 1 - Form
 
+## Example - Slider
+
+## Example - Style Body
+
+При кліку на кнопку з `id="style"` стилізуй `body` background рандомним кольором
+з масиву `arr`, для отримання рандомного кольору з масиву використай функцію
+`arrayRandomElement`. Use html from file [styleBG.html](./styleBG.html).
+
+```js
+function styleBG() {}
+
+function arrayRandomElement(arr) {
+  const randomColor = Math.floor(Math.random() * arr.length);
+  return arr[randomColor];
+}
+const arr = [
+  'white',
+  'blue',
+  'red',
+  'green',
+  'yellow',
+  'orange',
+  'purple',
+  'pink',
+  'grey',
+  'tomato',
+];
+```
+
 ## Example - Clicker
 
 ### 📝 Instructions:

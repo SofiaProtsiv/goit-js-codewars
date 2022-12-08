@@ -403,3 +403,33 @@
 // const fruitDetails = ['Banana', 2];
 // const banana = new Fruit(fruitDetails);
 // console.log(banana);
+
+const directRoute = function (to = 'Chop') {
+  console.log(`${this.from} => ${to}`);
+};
+
+const train1 = {
+  from: 'Kyiv',
+  directRoute,
+};
+const train2 = {
+  from: 'Lviv',
+  directRoute,
+};
+
+directRoute.apply(train1, ['Vinnytsia']);
+directRoute.call(train1);
+train2.directRoute();
+train1.directRoute.call(train2, 'Odessa');
+
+const yourDirectRoute = directRoute.bind(train1);
+yourDirectRoute();
+yourDirectRoute('Kharkiv');
+
+const theirDirectRoute = directRoute.bind(train2, 'Poltava');
+theirDirectRoute();
+theirDirectRoute('Cherkasy');
+theirDirectRoute.call(train1);
+
+const anotherDirectRoute = train1.directRoute;
+console.log(anotherDirectRoute());
