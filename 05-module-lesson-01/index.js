@@ -231,81 +231,88 @@
 
 ////
 
-// const apple = { name: '🍎', price: 50 };
-// const grape = { name: '🍇', price: 70 };
-// const lemon = { name: '🍋', price: 60 };
-// const strawberry = { name: '🍓', price: 110 };
+const apple = { name: '🍎', price: 50 };
+const grape = { name: '🍇', price: 70 };
+const lemon = { name: '🍋', price: 60 };
+const strawberry = { name: '🍓', price: 110 };
 
-// const cart = {
-//   items: [],
-//   getItems() {
-//     return this.items;
-//   },
-//   add(product) {
-//     for (const item of this.items) {
-//       if (product === item) {
-//         return (item.quantity += 1);
-//       }
-//     }
+const cart = {
+  items: [],
+  getItems() {
+    return this.items;
+  },
+  add(product) {
+    // if (!product.quantity) {
+    //   product.quantity = 1;
+    //   this.items.push(product);
+    // } else {
+    //   product.quantity += 1;
+    // }
+    //
+    //
+    // for (const item of this.items) {
+    //   if (product === item) {
+    //     return (item.quantity += 1);
+    //   }
+    // }
+    // this.items.push(product);
+    // product.quantity = 1;
+  },
+  remove(productName) {
+    // for (const item of this.items) {
+    //   if (productName === item.name) {
+    //     this.items.splice(this.items.indexOf(item), 1);
+    //   }
+    // }
 
-//     this.items.push(product);
-//     product.quantity = 1;
-//   },
-//   remove(productName) {
-//     for (const item of this.items) {
-//       if (productName === item.name) {
-//         this.items.splice(this.items.indexOf(item), 1);
-//       }
-//     }
-//   },
-//   clear() {
-//     this.items.splice(0, this.items.length);
+    this.items.splice(this.items.indexOf(item), 1);
+  },
+  clear() {
+    this.items.splice(0, this.items.length);
 
-//     return 'Корзина очищена!';
-//   },
-//   countTotalPrice() {
-//     let totalPrice = 0;
+    return 'Корзина очищена!';
+  },
+  countTotalPrice() {
+    let totalPrice = 0;
 
-//     for (const item of this.items) {
-//       totalPrice += item.price * item.quantity;
-//     }
+    for (const item of this.items) {
+      totalPrice += item.price * item.quantity;
+    }
 
-//     return totalPrice;
-//   },
-//   increaseQuantity(productName) {
-//     for (const item of this.items) {
-//       if (productName === item.name) {
-//         return (item.quantity += 1);
-//       }
-//     }
-//   },
-//   decreaseQuantity(productName) {
-//     for (const item of this.items) {
-//       if (productName === item.name) {
-//         item.quantity -= 1;
-//       }
+    return totalPrice;
+  },
+  increaseQuantity(productName) {
+    for (const item of this.items) {
+      if (productName === item.name) {
+        return (item.quantity += 1);
+      }
+    }
+  },
+  decreaseQuantity(productName) {
+    for (const item of this.items) {
+      if (productName === item.name) {
+        item.quantity -= 1;
+      }
 
-//       if (item.quantity < 1) {
-//         return this.remove(productName);
-//       }
-//     }
-//   },
-// };
+      if (item.quantity < 1) {
+        return this.remove(productName);
+      }
+    }
+  },
+};
 
-// console.table(cart.getItems());
+console.table(cart.getItems());
 
-// cart.add(apple);
-// cart.add(apple);
-// cart.add(apple);
-// cart.add(grape);
-// cart.add(grape);
-// cart.add(grape);
-// cart.add(lemon);
-// cart.add(lemon);
-// cart.add(strawberry);
-// cart.add(strawberry);
+cart.add(apple);
+cart.add(apple);
+cart.add(apple);
+cart.add(grape);
+cart.add(grape);
+cart.add(lemon);
+cart.add(strawberry);
+cart.add(strawberry);
 
-// console.table(cart.getItems());
+console.table(cart.getItems());
 
 // cart.remove('🍎');
 // console.table(cart.getItems());
@@ -404,7 +411,35 @@
 // const banana = new Fruit(fruitDetails);
 // console.log(banana);
 
+// const account = {
+//   owner: 'Mango',
+//   balance: 24000,
+//   discount: 0.1,
+//   orders: ['order-1', 'order-2', 'order-3'],
+//   changeDiscount(value) {
+//     this.discount = value;
+//   },
+//   showOrders() {
+//     return this.orders;
+//   },
+//   addOrder(cost, order) {
+//     this.balance -= cost;
+//     this.orders.push(order);
+//   },
+// };
+
+// account.changeDiscount(0.15);
+// console.log(account.discount); // 0.15
+
+// console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3']
+
+// account.addOrder(5000, 'order-4');
+// console.log(account.balance); // 19000
+// console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3', 'order-4']
+
 const directRoute = function (to = 'Chop') {
+  // console.log(this);
+  // console.log(to);
   console.log(`${this.from} => ${to}`);
 };
 
@@ -417,19 +452,71 @@ const train2 = {
   directRoute,
 };
 
-directRoute.apply(train1, ['Vinnytsia']);
-directRoute.call(train1);
-train2.directRoute();
-train1.directRoute.call(train2, 'Odessa');
+// directRoute.apply(train1, ['Vinnytsia']);
+// directRoute.call(train1);
+// train2.directRoute();
+// train1.directRoute.call(train2, 'Odessa');
 
-const yourDirectRoute = directRoute.bind(train1);
-yourDirectRoute();
-yourDirectRoute('Kharkiv');
+// const yourDirectRoute = directRoute.bind(train1);
+// yourDirectRoute();
+// yourDirectRoute('Kharkiv');
 
-const theirDirectRoute = directRoute.bind(train2, 'Poltava');
-theirDirectRoute();
-theirDirectRoute('Cherkasy');
-theirDirectRoute.call(train1);
+// const theirDirectRoute = directRoute.bind(train2, 'Poltava');
+// theirDirectRoute();
+// theirDirectRoute('Cherkasy');
+// theirDirectRoute.call(train1);
 
-const anotherDirectRoute = train1.directRoute;
-console.log(anotherDirectRoute());
+// const anotherDirectRoute = train1.directRoute;
+// console.log(anotherDirectRoute());
+
+// const inventory = {
+//   items: ['Knife', 'Gas mask'],
+//   add(itemName) {
+//     console.log(`Adding ${itemName} to inventory`);
+
+//     this.items.push(itemName);
+//   },
+//   remove(itemName) {
+//     console.log(`Removing ${itemName} from inventory`);
+//     this.items = this.items.filter(item => item !== itemName);
+//   },
+// };
+
+// const invokeInventoryAction = function (itemName, action) {
+//   console.log(`Invoking action on ${itemName}`);
+//   action(itemName);
+// };
+
+// inventory.add('Poison');
+
+// // invokeInventoryAction('Medkit', inventory.add.bind(inventory, 'Poison'));
+// // Invoking action on Medkit
+// // Adding Medkit to inventory
+
+// console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
+
+// invokeInventoryAction('Gas mask', inventory.remove.bind(inventory, 'Poison'));
+// // Invoking action on Gas mask
+// // Removing Gas mask from inventory
+
+// console.log(inventory.items); // ['Knife', 'Medkit']
+
+// const car = {
+//   registrationNumber: 'GA12345',
+//   brand: 'Toyota',
+// };
+// const car2 = {
+//   registrationNumber: 'GA12345',
+//   brand: 'BMW',
+// };
+
+// const displayDetails = function (ownerName) {
+//   console.log(this);
+//   console.log(
+//     `${ownerName}, this is your car: ${this.registrationNumber} ${this.brand}`
+//   );
+// };
+
+// const newInvoke = displayDetails.bind(car, 'Sofia');
+// newInvoke();
+// displayDetails.call(car2, 'Alex');
