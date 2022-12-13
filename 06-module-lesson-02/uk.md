@@ -2,7 +2,63 @@
 
 ## Example 1 - Form
 
-## Example - Slider
+```js
+const form = document.querySelector('#signup');
+
+const NAME_REQUIRED = 'Please enter your name';
+const EMAIL_REQUIRED = 'Please enter your email';
+const EMAIL_INVALID = 'Please enter a correct email format';
+
+// show a message with a type of the input
+function showMessage({ input, message, type }) {
+  // get the small element and set the message
+  ...
+  // update the class for the input: add "success" if type===true, add "error" if type===false
+  ...
+  // return type(true/false) to understand to show message or no
+  return type;
+}
+
+function showError(input, message) {
+  return showMessage({ input, message, type: false });
+}
+
+function showSuccess(input) {
+  return showMessage({ input, message: '', type: true });
+}
+
+function hasValue(input, message) {
+  // check if the value is not empty if empty show error message else show success message
+  ...
+}
+
+function validateEmail(input, requiredMsg, invalidMsg) {
+  // check if the value is not empty, if value is empty return error message
+  ...
+  // validate email format,  if format is wrong show "ivalid" error message
+    const emailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const email = ...;
+
+  if (!emailRegex.test(email)) {
+   ...
+  }
+// if format validate ok and email input is not empty show success
+}
+
+function handleSubmit(event) {
+  // stop form submission
+  ...
+  // validate the form
+  ...
+  // if valid, submit the form and return { formData[name] = value }.
+  ...
+}
+
+form.addEventListener('submit', handleSubmit);
+
+```
 
 ## Example - Style Body
 
@@ -90,4 +146,79 @@ const deleteTask = () => {};
 addButton.addEventListener('click', addTask);
 tasksHolder.addEventListener('click', editTask);
 tasksHolder.addEventListener('click', deleteTask);
+```
+
+## Exapmle - Slider
+
+This todo list design is pure css. The css and html are ready, but we need to
+code the Javascript part of the application. Use html from file
+[slider.html](./slider.html).
+
+```js
+const sliderDiv = ...;
+const buttonNext = ...;
+const buttonPrevious = ...;
+
+let prevImage = 0;
+
+function slideToNext() {}
+function slideToPrevious() {}
+function destroyPreviousMarkup() {}
+function createdMarkup() {}
+
+createdMarkup(sliderItems[0]);
+
+buttonNext.addEventListener('click', slideToNext);
+buttonPrevious.addEventListener('click', slideToPrevious);
+```
+
+## Example - keybord game
+
+```js
+// object size
+const objectSize = {
+  width: 20,
+  height: 20,
+};
+
+// start object position
+const position = {
+  x: 10,
+  y: 10,
+};
+
+// how many px the object will move with each press of the arrows on the keyboard
+const moveRate = 10;
+
+// get object
+const object = document.getElementById('object');
+// style object
+object.style.width = objectSize.width + 'px';
+object.style.height = objectSize.height + 'px';
+object.style.background = 'black';
+
+// Update y-axis position at the edge.
+function updateYPosition(distance) {
+  // if y < 0 say that y = 499
+  // if y > 499 say that y = 0
+}
+
+// Update x-axis position at the edge.
+function updateXPosition(distance) {
+  // if y < 0 say that y = 499
+  // if y > 499 say that y = 0
+}
+
+function refreshPosition() {
+  // add new transform-style to object
+}
+
+window.addEventListener('keydown', function (event) {
+  // determine which arrow on the keyboard was pressed,
+  // if ArrowDown is pressed, call the updateYPosition(-moveRate) function;
+  // if ArrowUp is pressed, call the updateYPosition(moveRate) function;
+  // if ArrowLeft is pressed, call the updateXPosition(-moveRate)function;
+  // if ArrowRight is pressed, call the updateXPosition(moveRate) function;
+  // then call refreshPosition() function
+});
 ```

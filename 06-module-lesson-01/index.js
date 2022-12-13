@@ -84,31 +84,180 @@
 //   radio.addEventListener('change', changePricing)
 // );
 
-const appendFruitList = ['apple🍎', 'banana🍌'];
-const prependFruitList = ['grapes🍇', 'orange🍊'];
-const beforeFruitList = ['strawberry🍓', 'cherry🍒'];
-const afterFruitList = ['peach🍑', 'kiwi🥝'];
+// const appendFruitList = ['apple🍎', 'banana🍌'];
+// const prependFruitList = ['grapes🍇', 'orange🍊'];
+// const beforeFruitList = ['strawberry🍓', 'cherry🍒'];
+// const afterFruitList = ['peach🍑', 'kiwi🥝'];
 
-const ulEl = document.createElement('ul');
-document.querySelector('body').appendChild(ulEl);
+// const ulEl = document.createElement('ul');
+// document.querySelector('body').appendChild(ulEl);
 
-const listOfIngridients = array => {
-  const nodeList = [];
-  array.forEach(fruit => {
-    const item = document.createElement('li');
-    item.textContent = fruit;
-    nodeList.push(item);
-  });
-  return nodeList;
-};
-ulEl.append(...listOfIngridients(appendFruitList));
-ulEl.prepend(...listOfIngridients(prependFruitList));
-ulEl.after(...listOfIngridients(afterFruitList));
-ulEl.before(...listOfIngridients(beforeFruitList));
+// const listOfIngridients = array => {
+//   return array.map(fruit => {
+//     let item = document.createElement('li');
+//     item.classList.add('item');
+//     item.textContent = fruit;
+//     return item;
+//   });
+// };
 
-//first
-// ulEl.removeChild(ulEl.querySelector('li'));
-// //last
-// const arrOfItemsInList = Array.from(document.querySelectorAll('li'));
+// ulEl.append(...listOfIngridients(appendFruitList));
+// ulEl.prepend(...listOfIngridients(prependFruitList));
+// ulEl.after(...listOfIngridients(afterFruitList));
+// ulEl.before(...listOfIngridients(beforeFruitList));
+
+// ulEl.addEventListener('click', e => console.log(e.target.innerText));
+
+// // ulEl.removeChild(ulEl.querySelector('li'));
+// const arrOfItemsInList = Array.from(ulEl.querySelectorAll('li'));
 // const lastChildInList = arrOfItemsInList.length - 1;
+
+// ulEl.removeChild(arrOfItemsInList[0]);
 // ulEl.removeChild(arrOfItemsInList[lastChildInList]);
+// //
+//
+//
+//
+//
+// const pictures = [
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
+//     description: 'Hokkaido Flower',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
+//     description: 'Container Haulage Freight',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
+//     description: 'Aerial Beach View',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
+//     description: 'Flower Blooms',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334_1280.jpg',
+//     description: 'Alpine Mountains',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571_1280.jpg',
+//     description: 'Mountain Lake Sailing',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg',
+//     description: 'Alpine Spring Meadows',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
+//     description: 'Nature Landscape',
+//   },
+//   {
+//     width: 700,
+//     height: 460,
+//     preview:
+//       'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843__340.jpg',
+//     original:
+//       'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',
+//     description: 'Lighthouse Coast Sea',
+//   },
+// ];
+
+/*
+<li class="gallery-item">
+  <a href="#">
+    <img src="https://picsum.photos/id/237/200/300" alt="Labrador">
+  </a>
+</li>
+*/
+// const galleryListRef = document.querySelector('.gallery');
+
+// const itemsList = pictures.map(
+//   ({ preview, description, original, width, height }) => {
+//     const liEl = document.createElement('li');
+//     liEl.classList.add('gallery__item');
+
+//     const imgEl = document.createElement('img');
+//     imgEl.src = preview;
+//     imgEl.alt = description;
+//     imgEl.width = width;
+//     imgEl.height = height;
+
+//     liEl.append(imgEl);
+//     return liEl;
+//   }
+// );
+
+// galleryListRef.append(...itemsList);
+
+// const galleryListRef = document.querySelector('.gallery');
+
+// const itemsList = pictures
+//   .map(({ preview, description }) => {
+//     return `<li class="gallery__item">
+//   <img src=${preview} alt=${description}>
+// </li>`;
+//   })
+//   .join('');
+
+// galleryListRef.innerHTML = itemsList;
+
+const elP = document.createElement('p');
+// elP.innerText = text;
+
+document.querySelector('body').prepend(elP);
+console.log(elP.innerHTML);
+elP.innerHTML = text.split(' ').map(word => {
+  if (word.length > 8) {
+    const spanEl = document.createElement('span');
+    spanEl.textContent = word;
+    spanEl.style.backgroundColor = 'red';
+    console.log(spanEl);
+    elP.append(spanEl);
+    return spanEl;
+
+    // return '<span style= "background-color:red">' + word + "</span>";
+  } else {
+    return word;
+  }
+});

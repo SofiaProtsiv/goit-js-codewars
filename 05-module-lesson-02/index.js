@@ -109,21 +109,26 @@
 //   constructor() {
 //     this.productList = [];
 
-//     this.addProduct.bind(this);
-//     this.removeProduct.bind(this);
-//     this.removeItemOfProduct.bind(this);
-//     this.showBasket.bind(this);
+//     // this.addProduct.bind(this);
+//     // this.removeProduct.bind(this);
+//     // this.removeItemOfProduct.bind(this);
+//     // this.showBasket.bind(this);
+
 //     // this.checkIfProductExists.bind(this);
 //   }
 //   addProduct(product) {
-//     const alreadyInBasket = myBasket.checkIfProductExists(product.productName);
-//     if (alreadyInBasket) {
-//       return product.updateProductQuantity('add');
+//     // const alreadyInBasket = myBasket.checkIfProductExists(product.productName);
+//     if (product.productsInBasket) {
+//       product.productsInBasket += 1;
+//       product.productQuantity -= 1;
 //     } else {
-//       this.productList.push(product);
-//       product.updateProductQuantity('add');
+//       product.productsInBasket = 1;
+//       product.productQuantity -= 1;
 //     }
+//     this.productList.push(product);
+//     this.productList = [...new Set(this.productList)];
 //   }
+
 //   // checkIfProductExists(productName) {
 //   //   return (
 //   //     this.productList.filter(
@@ -136,16 +141,29 @@
 //       product => product.productName !== productName
 //     );
 //   }
+//   //   removeItemOfProduct(productName) {
+//   // for (const product of this.productList) {
+//   //   if (product.productName === productName) {
+//   //     product.updateProductQuantity('remove');
+//   //   }
+//   //   if (product.productsInBasket === 0) {
+//   //     this.removeProduct(productName);
+//   //   }
+//   // }
 //   removeItemOfProduct(productName) {
-//     for (const product of this.productList) {
-//       if (product.productName === productName) {
-//         product.updateProductQuantity('remove');
-//       }
-//       if (product.productsInBasket === 0) {
-//         this.removeProduct(productName);
-//       }
+//     const product = this.productList.find(
+//       product => product.productName === productName
+//     );
+//     if (!product) {
+//       return;
 //     }
+//     if (product.productsInBasket < 1) {
+//       this.removeProduct(productName);
+//       return;
+//     }
+//     product.productsInBasket -= 1;
 //   }
+
 //   showBasket() {
 //     const amount = this.productList.reduce(
 //       (total, { productTotalPrice }) => (total += productTotalPrice),
@@ -184,132 +202,133 @@
 
 // myBasket.removeItemOfProduct('Apple');
 // myBasket.removeItemOfProduct('Apple');
-// // myBasket.removeItemOfProduct('Apple');
-// // myBasket.removeItemOfProduct('Apple');
-// // myBasket.removeItemOfProduct('Apple');
+// myBasket.removeItemOfProduct('Apple');
+// myBasket.removeItemOfProduct('Apple');
+// myBasket.removeItemOfProduct('Apple');
+// myBasket.removeItemOfProduct('Apple');
 
-// myBasket.removeItemOfProduct('Mango');
 // // myBasket.removeItemOfProduct('Mango');
 // // myBasket.removeItemOfProduct('Mango');
+// // myBasket.removeItemOfProduct('Mango');
 
-// myBasket.removeProduct('Apple');
+// // myBasket.removeProduct('Apple');
 
 // myBasket.showBasket();
 
-// class Toggle {
-//   constructor({ isOpen = false } = {}) {
-//     this.on = isOpen;
+// // class Toggle {
+// //   constructor({ isOpen = false } = {}) {
+// //     this.on = isOpen;
+// //   }
+
+// //   toggle() {
+// //     this.on = !this.on;
+// //   }
+// // }
+
+// // const firstToggle = new Toggle({ isOpen: true });
+// // console.group('firstToggle');
+// // console.log(firstToggle.on);
+// // firstToggle.toggle();
+// // console.log(firstToggle.on);
+// // console.groupEnd('firstToggle');
+
+// // const secondToggle = new Toggle();
+// // console.group('secondToggle');
+// // console.log(secondToggle.on);
+// // secondToggle.toggle();
+// // console.log(secondToggle.on);
+// // console.groupEnd('secondToggle');
+
+// // class User {
+// //   #login;
+// //   #email;
+// //   constructor({ login, email }) {
+// //     this.#login = login;
+// //     this.#email = email;
+// //   }
+
+// //   get email() {
+// //     return this.#email;
+// //   }
+// //   set email(newEmail) {
+// //     this.#email = newEmail;
+// //   }
+
+// //   get login() {
+// //     return this.#login;
+// //   }
+
+// //   set login(newLogin) {
+// //     this.#login = newLogin;
+// //   }
+// // }
+// class Car {
+//   static getSpecs(car) {
+//     console.log(`maxSpeed: ${car._maxSpeed}, speed: ${car._speed},
+//       isOn: ${car._isOn}, distance: ${car._distance}, price: ${car._price}`);
 //   }
 
-//   toggle() {
-//     this.on = !this.on;
+//   constructor(car) {
+//     this._speed = 0;
+//     this._price = car.price;
+//     this._maxSpeed = car.maxSpeed;
+//     this._isOn = false;
+//     this._distance = 0;
+//   }
+
+//   get price() {
+//     return this._price;
+//   }
+
+//   set price(price) {
+//     this._price = price;
+//   }
+
+//   turnOn() {
+//     this._isOn = true;
+//   }
+
+//   turnOff() {
+//     this._isOn = false;
+//   }
+
+//   accelerate(value) {
+//     let newSpeed = this._speed + value;
+//     if (newSpeed <= this._maxSpeed) {
+//       this._speed = newSpeed;
+//     }
+//   }
+
+//   decelerate(value) {
+//     let newSpeed = this._speed - value;
+//     if (newSpeed > 0) {
+//       this._speed = newSpeed;
+//     }
+//   }
+
+//   drive(hours) {
+//     if (this._isOn) {
+//       this._distance += hours * this._speed;
+//     }
 //   }
 // }
 
-// const firstToggle = new Toggle({ isOpen: true });
-// console.group('firstToggle');
-// console.log(firstToggle.on);
-// firstToggle.toggle();
-// console.log(firstToggle.on);
-// console.groupEnd('firstToggle');
+// const mustang = new Car({ maxSpeed: 200, price: 2000 });
 
-// const secondToggle = new Toggle();
-// console.group('secondToggle');
-// console.log(secondToggle.on);
-// secondToggle.toggle();
-// console.log(secondToggle.on);
-// console.groupEnd('secondToggle');
+// mustang.turnOn();
+// mustang.accelerate(50);
+// mustang.drive(2);
 
-// class User {
-//   #login;
-//   #email;
-//   constructor({ login, email }) {
-//     this.#login = login;
-//     this.#email = email;
-//   }
+// Car.getSpecs(mustang);
+// // maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000
 
-//   get email() {
-//     return this.#email;
-//   }
-//   set email(newEmail) {
-//     this.#email = newEmail;
-//   }
+// mustang.decelerate(20);
+// mustang.drive(1);
+// mustang.turnOff();
 
-//   get login() {
-//     return this.#login;
-//   }
+// Car.getSpecs(mustang);
+// // maxSpeed: 200, speed: 0, isOn: false, distance: 120, price: 2000
 
-//   set login(newLogin) {
-//     this.#login = newLogin;
-//   }
-// }
-class Car {
-  static getSpecs(car) {
-    console.log(`maxSpeed: ${car._maxSpeed}, speed: ${car._speed}, 
-      isOn: ${car._isOn}, distance: ${car._distance}, price: ${car._price}`);
-  }
-
-  constructor(car) {
-    this._speed = 0;
-    this._price = car.price;
-    this._maxSpeed = car.maxSpeed;
-    this._isOn = false;
-    this._distance = 0;
-  }
-
-  get price() {
-    return this._price;
-  }
-
-  set price(price) {
-    this._price = price;
-  }
-
-  turnOn() {
-    this._isOn = true;
-  }
-
-  turnOff() {
-    this._isOn = false;
-  }
-
-  accelerate(value) {
-    let newSpeed = this._speed + value;
-    if (newSpeed <= this._maxSpeed) {
-      this._speed = newSpeed;
-    }
-  }
-
-  decelerate(value) {
-    let newSpeed = this._speed - value;
-    if (newSpeed > 0) {
-      this._speed = newSpeed;
-    }
-  }
-
-  drive(hours) {
-    if (this._isOn) {
-      this._distance += hours * this._speed;
-    }
-  }
-}
-
-const mustang = new Car({ maxSpeed: 200, price: 2000 });
-
-mustang.turnOn();
-mustang.accelerate(50);
-mustang.drive(2);
-
-Car.getSpecs(mustang);
-// maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000
-
-mustang.decelerate(20);
-mustang.drive(1);
-mustang.turnOff();
-
-Car.getSpecs(mustang);
-// maxSpeed: 200, speed: 0, isOn: false, distance: 120, price: 2000
-
-console.log(mustang.price); // 2000
-mustang.price = 4000;
-console.log(mustang.price); // 4000
+// console.log(mustang.price); // 2000
+// mustang.price = 4000;
+// console.log(mustang.price); // 4000

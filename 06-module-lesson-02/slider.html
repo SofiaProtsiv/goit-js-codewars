@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* Slideshow container */
+    .slider {
+      max-width: 500px;
+      position: relative;
+      transform: translate(0%, 60%);
+      margin: auto;
+    }
+    img {
+      vertical-align: middle;
+      width: 100%;
+    }
+    /* Next & previous buttons */
+    #previous,
+    #next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    #next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    #previous:hover,
+    #next:hover {
+      color: white;
+      background-color: rgba(61, 61, 61, 0.8);
+    }
+  </style>
+  <body>
+    <div class="slider">
+      <button id="previous">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </body>
+  <script type="module" src="./06-module-lesson-02/index.js"></script>
+</html>

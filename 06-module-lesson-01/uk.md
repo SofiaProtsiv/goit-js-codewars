@@ -86,3 +86,7 @@ Array.from(document.querySelectorAll('input[type="radio"]')).forEach(radio =>
   radio.addEventListener('change', changePricing)
 );
 ```
+
+## Example - Gallery
+
+Use template from file [gallery.html](./gallery.html).
