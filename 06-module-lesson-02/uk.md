@@ -1,6 +1,33 @@
 # Модуль 6. Заняття 12. DOM i events
 
-## Example 1 - Form
+## Example 1 - Modal Form
+
+Use template from file [modal_form.html](./modal_form.html).
+
+```js
+// refs
+const modal = document.getElementById('modal');
+const form = document.querySelector('form');
+const login_btn = document.querySelector('#login_btn');
+const cancle_btn = document.querySelector('#cancle_btn');
+const closeModal_btn = document.querySelector('#closeModal_btn');
+const remember_checkbox = document.querySelector('input[name="remember"]');
+
+// function which you should add to event listener as callback
+const handleFormOpen = event => {};
+const handleFormClose = event => {};
+const handleRememberCheckbox = event => {};
+const handleRemoveRememberCheckbox = event => {};
+const handleFormSubmit = event => {};
+
+// When the user clicks anywhere outside of the modal, close it, add new event listener
+// add event listener for all refs
+
+```
+
+## Example 2 - Form Validation
+
+Use template from file [form.html](./form.html).
 
 ```js
 const form = document.querySelector('#signup');
@@ -173,6 +200,8 @@ buttonPrevious.addEventListener('click', slideToPrevious);
 ```
 
 ## Example - keybord game
+
+Use template from file [keybord_game.html](./keybord_game.html).
 
 ```js
 // object size

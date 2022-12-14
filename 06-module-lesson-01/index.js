@@ -243,21 +243,40 @@
 // galleryListRef.innerHTML = itemsList;
 
 const elP = document.createElement('p');
-// elP.innerText = text;
 
 document.querySelector('body').prepend(elP);
-console.log(elP.innerHTML);
-elP.innerHTML = text.split(' ').map(word => {
-  if (word.length > 8) {
-    const spanEl = document.createElement('span');
-    spanEl.textContent = word;
-    spanEl.style.backgroundColor = 'red';
-    console.log(spanEl);
-    elP.append(spanEl);
-    return spanEl;
 
-    // return '<span style= "background-color:red">' + word + "</span>";
-  } else {
+const text = `Об'єктна модель документа (Document Object Model) - незалежний від мови інтерфейс для роботи з HTML-документом. Містить набір властивостей і методів, що дозволяють шукати, створювати і видаляти елементи, реагувати на дії користувача і багато іншого. Тобто з'єднує сторінку з мовою програмування.`;
+elP.innerText = text;
+elP.innerHTML = elP.innerText
+  .split(' ')
+  .map(word => {
+    if (word.length > 8) {
+      const spanEl = document.createElement('span');
+      spanEl.textContent = word;
+      spanEl.style.backgroundColor = 'blue';
+      return spanEl.outerHTML;
+
+      // return '<span style="background-color:red">' + word + "</span>";
+    }
     return word;
-  }
-});
+  })
+  .join(' ');
+
+// const mylinks = document.querySelector('#mylinks');
+
+// console.log('textContent => ', mylinks.textContent);
+// console.log('innerText => ', mylinks.innerText);
+// console.log('innerHTML => ', mylinks.innerHTML);
+// console.log('outerHTML => ', mylinks.outerHTML);
+
+// console.log('textContent => ', elP.textContent);
+// console.log('innerText => ', elP.innerText);
+// console.log('innerHTML => ', elP.innerHTML);
+// console.log('outerHTML => ', elP.outerHTML);
+
+// const div = document.querySelector('#div');
+// console.log('textContent => ', div.textContent); // Element.innerHTMLповертає HTML, як вказує його назва. Іноді люди використовують innerHTMLдля отримання або написання тексту всередині елемента, але textContentмає кращу продуктивність, оскільки його значення не аналізується як HTML.
+// console.log('innerText => ', div.innerText);
+// console.log('innerHTML => ', div.innerHTML);
+// console.log('outerHTML => ', div.outerHTML);

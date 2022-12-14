@@ -110,6 +110,10 @@ import { sliderItems } from './slider.js';
 
 // // completedTasksHolder.addEventListener('click', editTask);
 // // completedTasksHolder.addEventListener('click', deleteTask);
+//
+//
+//
+//
 
 // let button = document.querySelector('#superDuperButton');
 
@@ -160,7 +164,9 @@ import { sliderItems } from './slider.js';
 // let prevImage = 0;
 
 // function slideToNext() {
-//   prevImage >= sliderItems.length - 1 ? (prevImage = 0) : (prevImage += 1);
+//   prevImage >= sliderItems.length - 1
+//     ? (prevImage = 0)
+//     : (prevImage += 1);
 
 //   const newImage = sliderItems[prevImage];
 
@@ -168,7 +174,9 @@ import { sliderItems } from './slider.js';
 //   destroyPreviousMarkup();
 // }
 // function slideToPrevious() {
-//   prevImage <= 0 ? (prevImage = sliderItems.length - 1) : (prevImage -= 1);
+//   prevImage <= 0
+//     ? (prevImage = sliderItems.length - 1)
+//     : (prevImage -= 1);
 
 //   const newImage = sliderItems[prevImage];
 
@@ -177,13 +185,16 @@ import { sliderItems } from './slider.js';
 // }
 // function destroyPreviousMarkup() {
 //   const images = document.getElementsByTagName('img');
-//   images[0] && images[0].parentNode.removeChild(images[0]);
+//   images[0].remove();
 // }
 // function createdMarkup({ preview, description }) {
-//   const img = document.createElement('img');
-//   img.src = preview;
-//   img.alt = description;
-//   sliderDiv.append(img);
+//   // const img = document.createElement('img');
+//   // img.src = preview;
+//   // img.alt = description;
+//   // sliderDiv.append(img);
+
+//   const img = `<img src=${preview} alt=${description}/>`;
+//   sliderDiv.insertAdjacentHTML('beforebegin', img);
 // }
 
 // createdMarkup(sliderItems[0]);
@@ -268,63 +279,120 @@ import { sliderItems } from './slider.js';
 //   }
 // });
 
-// розмір обєкта який рухається
-const objectSize = {
-  width: 20,
-  height: 20,
-};
+// // розмір обєкта який рухається
+// const objectSize = {
+//   width: 20,
+//   height: 20,
+// };
 
-const position = {
-  x: 10,
-  y: 10,
-};
-// швидкість переміщення в рх, на скільки рх буде рухатися кожного разу
-const moveRate = 10;
+// const position = {
+//   x: 10,
+//   y: 10,
+// };
+// // швидкість переміщення в рх, на скільки рх буде рухатися кожного разу
+// const moveRate = 10;
 
-const object = document.getElementById('object');
-object.style.width = objectSize.width + 'px';
-object.style.height = objectSize.height + 'px';
-object.style.background = 'black';
+// const object = document.getElementById('object');
+// object.style.width = objectSize.width + 'px';
+// object.style.height = objectSize.height + 'px';
+// object.style.background = 'black';
 
-function updateYPosition(distance) {
-  position.y = position.y - distance;
-  // Update y-axis position at the edge.
-  if (position.y < 0) {
-    position.y = 499;
-  } else if (position.y > 499) {
-    position.y = 0;
-  }
-}
-// Update x-axis position.
-function updateXPosition(distance) {
-  position.x = position.x + distance;
-  // Update x-axis position at the edge.
-  if (position.x < 0) {
-    position.x = 499;
-  } else if (position.x > 499) {
-    position.x = 0;
-  }
-}
+// function updateYPosition(distance) {
+//   position.y = position.y - distance;
+//   // Update y-axis position at the edge.
+//   if (position.y < 0) {
+//     position.y = 499;
+//   } else if (position.y > 499) {
+//     position.y = 0;
+//   }
+// }
+// // Update x-axis position.
+// function updateXPosition(distance) {
+//   position.x = position.x + distance;
+//   // Update x-axis position at the edge.
+//   if (position.x < 0) {
+//     position.x = 499;
+//   } else if (position.x > 499) {
+//     position.x = 0;
+//   }
+// }
 
-function refreshPosition() {
-  const x = position.x - moveRate;
-  const y = position.y - moveRate;
+// function refreshPosition() {
+//   const x = position.x - moveRate;
+//   const y = position.y - moveRate;
 
-  object.style.transform = `translate(${x}px, ${y}px)`;
-}
-window.addEventListener('keydown', function (event) {
-  if (event.code === 'ArrowDown') {
-    // Handle "down"
-    updateYPosition(-moveRate);
-  } else if (event.code === 'ArrowUp') {
-    // Handle "up"
-    updateYPosition(moveRate);
-  } else if (event.code === 'ArrowLeft') {
-    // Handle "left"
-    updateXPosition(-moveRate);
-  } else if (event.code === 'ArrowRight') {
-    // Handle "right"
-    updateXPosition(moveRate);
-  }
-  refreshPosition();
-});
+//   object.style.transform = `translate(${x}px, ${y}px)`;
+// }
+// window.addEventListener('keydown', function (event) {
+//   if (event.code === 'ArrowDown') {
+//     // Handle "down"
+//     updateYPosition(-moveRate);
+//   } else if (event.code === 'ArrowUp') {
+//     // Handle "up"
+//     updateYPosition(moveRate);
+//   } else if (event.code === 'ArrowLeft') {
+//     // Handle "left"
+//     updateXPosition(-moveRate);
+//   } else if (event.code === 'ArrowRight') {
+//     // Handle "right"
+//     updateXPosition(moveRate);
+//   }
+//   refreshPosition();
+// });
+
+//
+//
+//
+//
+// Get the modal
+// const modal = document.getElementById('modal');
+// const login_btn = document.querySelector('#login_btn');
+// const cancle_btn = document.querySelector('#cancle_btn');
+// const closeModal_btn = document.querySelector('#closeModal_btn');
+// const form = document.querySelector('form');
+// const remember_checkbox = document.querySelector('input[name="remember"]');
+// const handleFormOpen = event => {
+//   modal.style.display = 'block';
+// };
+// const handleFormClose = event => {
+//   modal.style.display = 'none';
+// };
+// const handleRememberCheckbox = event => {
+//   remember_checkbox.setAttribute('checked', remember_checkbox.checked);
+//   remember_checkbox.value = remember_checkbox.checked;
+// };
+// const handleRemoveRememberCheckbox = event => {
+//   remember_checkbox.removeAttribute('checked', false);
+//   remember_checkbox.value = false;
+// };
+// remember_checkbox.addEventListener('change', handleRememberCheckbox);
+// login_btn.addEventListener('click', handleFormOpen);
+// closeModal_btn.addEventListener('click', handleFormClose);
+// cancle_btn.addEventListener('click', handleFormClose);
+// // When the user clicks anywhere outside of the modal, close it
+// window.addEventListener(
+//   'click',
+//   event => event.target.id === 'modal' && handleFormClose()
+// );
+
+// form.addEventListener('submit', function (event) {
+//   // stop form submission
+//   event.preventDefault();
+
+//   const elements = Array.from(event.target);
+//   const formData = elements.reduce((formData, { value, name }) => {
+//     if (name) {
+//       formData[name] = value;
+//     }
+//     return formData;
+//   }, {});
+
+//   console.log(formData);
+
+//   if (formData.remember === 'false') {
+//     form.reset();
+//     handleRemoveRememberCheckbox();
+//     handleFormClose();
+//   }
+//   handleFormClose();
+// });
