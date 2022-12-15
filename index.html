@@ -1,298 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <style>
-    .product-image {
-      float: left;
-      width: 20%;
-    }
-    .product-details {
-      float: left;
-      width: 37%;
-    }
-    .product-price {
-      float: left;
-      width: 12%;
-    }
-    .product-quantity {
-      float: left;
-      width: 10%;
-    }
-    .product-removal {
-      float: left;
-      width: 9%;
-    }
-    .product-line-price {
-      float: left;
-      width: 12%;
-      text-align: right;
-    }
-    .group:before,
-    .shopping-cart:before,
-    .column-labels:before,
-    .product:before,
-    .totals-item:before,
-    .group:after,
-    .shopping-cart:after,
-    .column-labels:after,
-    .product:after,
-    .totals-item:after {
-      content: '';
-      display: table;
-    }
-    .group:after,
-    .shopping-cart:after,
-    .column-labels:after,
-    .product:after,
-    .totals-item:after {
-      clear: both;
-    }
-    .group,
-    .shopping-cart,
-    .column-labels,
-    .product,
-    .totals-item {
-      zoom: 1;
-    }
-    .product .product-price:before,
-    .product .product-line-price:before,
-    .totals-value:before {
-      content: '$';
-    }
-    label {
-      width: 60%;
-    }
-    body {
-      padding: 0px 30px 30px 20px;
-      font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light',
-        'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight: 100;
-    }
-    h1 {
-      font-weight: 100;
-    }
-    label {
-      color: #aaa;
-    }
-    .shopping-cart {
-      margin-top: -45px;
-    }
-    .column-labels label {
-      padding-bottom: 15px;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #eee;
-    }
-    .column-labels .product-image,
-    .column-labels .product-details,
-    .column-labels .product-removal {
-      text-indent: -9999px;
-    }
-    .product {
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-    .product .product-image {
-      text-align: center;
-    }
-    .product .product-image img {
-      width: 100px;
-    }
-    .product .product-details .product-title {
-      margin-right: 20px;
-      font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
-    }
-    .product .product-details .product-description {
-      margin: 5px 20px 5px 0;
-      line-height: 1.4em;
-    }
-    .product .product-quantity input {
-      width: 40px;
-    }
-    .product .remove-product {
-      border: 0;
-      padding: 4px 8px;
-      background-color: #c66;
-      color: #fff;
-      font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
-      font-size: 12px;
-      border-radius: 3px;
-    }
-    .product .remove-product:hover {
-      background-color: #a44;
-    }
-    .totals .totals-item {
-      float: right;
-      clear: both;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    .totals .totals-item label {
-      float: left;
-      clear: both;
-      width: 79%;
-      text-align: right;
-    }
-    .totals .totals-item .totals-value {
-      float: right;
-      width: 21%;
-      text-align: right;
-    }
-    .totals .totals-item-total {
-      font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
-    }
-    .checkout {
-      float: right;
-      border: 0;
-      margin-top: 20px;
-      padding: 6px 25px;
-      background-color: #6b6;
-      color: #fff;
-      font-size: 25px;
-      border-radius: 3px;
-    }
-    .checkout:hover {
-      background-color: #494;
-    }
-    @media screen and (max-width: 650px) {
-      .shopping-cart {
-        margin: 0;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-      }
-      .column-labels {
-        display: none;
-      }
-      .product-image {
-        float: right;
-        width: auto;
-      }
-      .product-image img {
-        margin: 0 0 10px 10px;
-      }
-      .product-details {
-        float: none;
-        margin-bottom: 10px;
-        width: auto;
-      }
-      .product-price {
-        clear: both;
-        width: 70px;
-      }
-      .product-quantity {
-        width: 100px;
-      }
-      .product-quantity input {
-        margin-left: 20px;
-      }
-      .product-quantity:before {
-        content: 'x';
-      }
-      .product-removal {
-        width: auto;
-      }
-      .product-line-price {
-        float: right;
-        width: 70px;
-      }
-    }
-    @media screen and (max-width: 350px) {
-      .product-removal {
-        float: right;
-      }
-      .product-line-price {
-        float: right;
-        clear: left;
-        width: auto;
-        margin-top: 10px;
-      }
-      .product .product-line-price:before {
-        content: 'Item Total: $';
-      }
-      .totals .totals-item .totals-value {
-        width: 40%;
-      }
-    }
-  </style>
-  <body>
+
     <!DOCTYPE html>
     <html>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+          /* body {
+            margin: 0;
+            padding: 0;
+            display: block;
+            text-align: center;
+
+            background: rgb(197, 218, 247);
+
+            font-family: 'Open Sans';
+          }
+          ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            width: 100%;
+            height: 30%;
+          }
+          .item {
+            position: relative;
+            width: 100px;
+            height: 70px;
+            margin: 25px;
+            cursor: pointer;
+            text-align: center;
+
+            transition: width 0.2s ease-in, height 0.2s ease-in;
+          }
+          .item:hover {
+            width: 110px;
+            height: 80px;
+          }
+          .quantityInBasket,
+          .quantityInStock {
+            position: absolute;
+            left: 45%;
+            bottom: -60%;
+            font-weight: 900;
+          }
+          button {
+            cursor: pointer;
+            width: 150px;
+            height: 50px;
+            margin: 50px 0;
+            color: aliceblue;
+            background-color: black;
+            border-radius: 10px;
+            transition: background-color 0.2s ease-in;
+          }
+          button:hover {
+            color: rgb(0, 0, 0);
+            background-color: white;
+          } */
+          *,
+          *::after,
+          *::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+          }
+
+          .body {
+            margin: 5%;
+            padding: 5%;
+          }
+
+          h2 {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 2%;
+          }
+
+          .form {
+            border: 1px solid black;
+            margin: 5%;
+            padding: 2%;
+          }
+
+          .section {
+            border: 1px solid black;
+            padding: 2%;
+            margin: 2%;
+          }
+
+          .section ol {
+            list-style: none;
+          }
+
+          .section ol li {
+            margin: 2% 2% 2% 0;
+          }
+
+          .section ol li input {
+            margin-right: 1%;
+          }
+
+          #btn {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+            padding: 1%;
+            background-color: #fff;
+            min-width: 184px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+          }
+          .result {
+            color: red;
+            text-align: center;
+            font-weight: 900;
+            margin: 20px 0;
+          }
+          .result.success {
+            color: green;
+          }
+
+        
+        body {
+          margin: 8px;
+          font-family: sans-serif;
+        }
+        
+        .output {
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 24px;
+          font-weight: 700;
+        }
+        
+        .color-palette {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+          gap: 4px;
+        }
+        
+        .color-palette .item {
+          padding: 0;
+          margin: 0;
+          border: none;
+          border-radius: 4px;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          transition: transform 250ms ease-in-out;
+        }
+        
+        .color-palette .item:hover {
+          transform: scale(1.1);
+        }
+      </style>
       </head>
       <body>
-        <div id="mylinks">
-          This is my <b>link collection</b>:
-          <ul>
-            <li>
-              <a href="www.borland.com">Bye bye <b>Borland</b> </a>
-            </li>
-            <li>
-              <a href="www.microfocus.com">Welcome to <b>Micro Focus</b></a>
-            </li>
-          </ul>
-        </div>
-        <h2>Modal Login Form</h2>
-        <button id="login_btn" style="width: auto">Login</button>
-
-        <div id="modal" class="modal">
-          <form
-            class="modal-content animate"
-            action="/action_page.php"
-            method="post"
-          >
-            <div class="imgcontainer">
-              <span id="closeModal_btn" class="close" title="Close Modal"
-                >&times;</span
-              >
-              <img
-                src="https://www-w3schools-com.translate.goog/howto/img_avatar2.png"
-                alt="Avatar"
-                class="avatar"
-              />
-            </div>
-
-            <div class="container">
-              <label for="name"><b>Username</b></label>
-              <input
-                type="text"
-                placeholder="Enter Username"
-                name="name"
-                required
-              />
-
-              <label for="password"><b>Password</b></label>
-              <input
-                type="password"
-                placeholder="Enter Password"
-                name="password"
-                required
-              />
-
-              <button type="submit">Login</button>
-              <label>
-                <input type="checkbox" value="false" name="remember" />
-                Remember me
-              </label>
-            </div>
-
-            <div class="container" style="background-color: #f1f1f1">
-              <button type="button" class="cancelbtn" id="cancle_btn">
-                Cancel
-              </button>
-              <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-          </form>
-        </div>
-        <div id="div">
-          This is <span style="display: none">some</span> text!
-        </div>
-        <script type="module" src="./06-module-lesson-02/index.js"></script>
+        <!-- <ul class="list" id="list"></ul>
+        <button type="button" id="sort">Sort</button>
+        <button type="clear" id="clear">Clear</button>
+        <ul class="backet" id="backet"></ul> -->
+        <!-- <form id="form" action="#" class="form">
+          <button id="btn" type="submit">Перевірити</button>
+        </form> -->
+        <p class="output">Selected color: -</p>
+        <div class="color-palette"></div>
+        <script type="module" src="./07-module-lesson-01/index.js"></script>
       </body>
     </html>
   </body>

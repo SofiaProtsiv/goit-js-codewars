@@ -40,6 +40,7 @@ import { sliderItems } from './slider.js';
 
 //   listItem.appendChild(checkBox);
 //   listItem.appendChild(label);
+
 //   listItem.appendChild(editInput);
 //   listItem.appendChild(editButton);
 //   listItem.appendChild(deleteButton);
@@ -396,3 +397,109 @@ import { sliderItems } from './slider.js';
 //   }
 //   handleFormClose();
 // });
+
+// export const cards = [
+//   {
+//     name: 'vine',
+//     productsInBasket: 0,
+//     productsInStock: 10,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3076/3076020.png',
+//   },
+//   {
+//     name: 'meat',
+//     productsInBasket: 0,
+//     productsInStock: 19,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3076/3076125.png',
+//   },
+//   {
+//     name: 'grapes',
+//     productsInBasket: 0,
+//     productsInStock: 9,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3075/3075957.png',
+//   },
+//   {
+//     name: 'pizza',
+//     productsInBasket: 0,
+//     productsInStock: 15,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3076/3076083.png',
+//   },
+//   {
+//     name: 'burger',
+//     productsInBasket: 0,
+//     productsInStock: 12,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png',
+//   },
+//   {
+//     name: 'cocktail',
+//     productsInBasket: 0,
+//     productsInStock: 4,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3076/3076100.png',
+//   },
+//   {
+//     name: 'pancakes',
+//     productsInBasket: 0,
+//     productsInStock: 7,
+//     img: 'https://cdn-icons-png.flaticon.com/512/3076/3076014.png',
+//   },
+//   {
+//     name: 'popcorn',
+//     productsInBasket: 0,
+//     productsInStock: 8,
+//     img: 'https://cdn-icons-png.flaticon.com/512/2515/2515135.png',
+//   },
+// ];
+// const listOfCards = document.getElementById('list');
+// const productQuantity = document.querySelector('.amount');
+// const backet = document.getElementById('backet');
+// const button = document.getElementById('sort');
+// const clear = document.getElementById('clear');
+
+// listOfCards.addEventListener('click', onClickToSelect);
+// clear.addEventListener('click', onClear);
+
+// createMarkup(cards);
+
+// function createMarkup(cards) {
+//   const markup = cards
+//     .map(
+//       ({ name, img, productsInStock }) =>
+//         `<li class = "item" id = "${name}") style="background: center / contain no-repeat url('${img}'">
+//                 <p class="quantityInStock">${productsInStock}</p>
+//         </li>`
+//     )
+//     .join('');
+
+//   listOfCards.insertAdjacentHTML('beforeend', markup);
+// }
+
+// function onClickToSelect(event) {
+//   cards.forEach(({ name, img, productsInBasket }) => {
+//     if (event.target.id === name) {
+//       increaceQuantity(name);
+//       console.log(backet.children[0]);
+//       const markupSelectedCard = `<li class ="item" id = "${name}" style="background: center / contain no-repeat url('${img}')">
+//                       <p class="quantityInBasket">${productsInBasket}</p>
+//               </li>`;
+//       backet.insertAdjacentHTML('afterbegin', markupSelectedCard);
+//     }
+//   });
+// }
+
+// function increaceQuantity(productName) {
+//   const product = cards.find(({ name }) => name === productName);
+
+//   if (product.productsInStock === 0) {
+//     return;
+//   }
+//   product.productsInBasket += 1;
+//   product.productsInStock -= 1;
+
+//   listOfCards.innerHTML = '';
+//   createMarkup(cards);
+// }
+
+// function onClear() {
+//   backet.innerHTML = '';
+// }
+
+const dropdown =  document.querySelectorAll(".dropdown-list")
