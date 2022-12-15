@@ -246,7 +246,10 @@ const elP = document.createElement('p');
 
 document.querySelector('body').prepend(elP);
 
-const text = `Об'єктна модель документа (Document Object Model) - незалежний від мови інтерфейс для роботи з HTML-документом. Містить набір властивостей і методів, що дозволяють шукати, створювати і видаляти елементи, реагувати на дії користувача і багато іншого. Тобто з'єднує сторінку з мовою програмування.`;
+const text = `Об'єктна модель документа (Document Object Model) - 
+незалежний від мови інтерфейс для роботи з HTML-документом. 
+
+Містить набір властивостей і методів, що дозволяють шукати, створювати і видаляти елементи, реагувати на дії користувача і багато іншого. Тобто з'єднує сторінку з мовою програмування.`;
 elP.innerText = text;
 elP.innerHTML = elP.innerText
   .split(' ')
@@ -255,6 +258,8 @@ elP.innerHTML = elP.innerText
       const spanEl = document.createElement('span');
       spanEl.textContent = word;
       spanEl.style.backgroundColor = 'blue';
+      console.log(spanEl);
+      console.log(spanEl.outerHTML);
       return spanEl.outerHTML;
 
       // return '<span style="background-color:red">' + word + "</span>";

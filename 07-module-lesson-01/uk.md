@@ -2,6 +2,8 @@
 
 ## Example 1 - Color Palete
 
+Use html from file [palete.html](./palete.html).
+
 ```js
 const colorPalette = document.querySelector('.color-palette');
 const output = document.querySelector('.output');
