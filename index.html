@@ -1,173 +1,220 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <style>
-          /* body {
-            margin: 0;
-            padding: 0;
-            display: block;
-            text-align: center;
-
-            background: rgb(197, 218, 247);
-
-            font-family: 'Open Sans';
-          }
-          ul {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            width: 100%;
-            height: 30%;
-          }
-          .item {
-            position: relative;
-            width: 100px;
-            height: 70px;
-            margin: 25px;
-            cursor: pointer;
-            text-align: center;
-
-            transition: width 0.2s ease-in, height 0.2s ease-in;
-          }
-          .item:hover {
-            width: 110px;
-            height: 80px;
-          }
-          .quantityInBasket,
-          .quantityInStock {
-            position: absolute;
-            left: 45%;
-            bottom: -60%;
-            font-weight: 900;
-          }
-          button {
-            cursor: pointer;
-            width: 150px;
-            height: 50px;
-            margin: 50px 0;
-            color: aliceblue;
-            background-color: black;
-            border-radius: 10px;
-            transition: background-color 0.2s ease-in;
-          }
-          button:hover {
-            color: rgb(0, 0, 0);
-            background-color: white;
-          } */
-          *,
-          *::after,
-          *::before {
-            margin: 0;
-            padding: 0;
-            box-sizing: inherit;
-          }
-
-          .body {
-            margin: 5%;
-            padding: 5%;
-          }
-
-          h2 {
-            display: inline-block;
-            vertical-align: middle;
-            padding: 2%;
-          }
-
-          .form {
-            border: 1px solid black;
-            margin: 5%;
-            padding: 2%;
-          }
-
-          .section {
-            border: 1px solid black;
-            padding: 2%;
-            margin: 2%;
-          }
-
-          .section ol {
-            list-style: none;
-          }
-
-          .section ol li {
-            margin: 2% 2% 2% 0;
-          }
-
-          .section ol li input {
-            margin-right: 1%;
-          }
-
-          #btn {
-            display: block;
-            margin: 0 auto;
-            border: 1px solid black;
-            padding: 1%;
-            background-color: #fff;
-            min-width: 184px;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-          }
-          .result {
-            color: red;
-            text-align: center;
-            font-weight: 900;
-            margin: 20px 0;
-          }
-          .result.success {
-            color: green;
-          }
-
-        
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo List</title>
+      </head>
+      <style>
         body {
-          margin: 8px;
-          font-family: sans-serif;
+          background: #fff;
+          color: #333;
+          font-family: Lato, sans-serif;
         }
-        
-        .output {
-          text-align: center;
-          text-transform: uppercase;
-          font-size: 24px;
-          font-weight: 700;
+        .container {
+          display: block;
+          width: 400px;
+          margin: 100px auto 0;
         }
-        
-        .color-palette {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-          gap: 4px;
-        }
-        
-        .color-palette .item {
-          padding: 0;
+        ul {
           margin: 0;
-          border: none;
-          border-radius: 4px;
-          width: 40px;
-          height: 40px;
-          cursor: pointer;
-          transition: transform 250ms ease-in-out;
+          padding: 0;
         }
-        
-        .color-palette .item:hover {
-          transform: scale(1.1);
+        li * {
+          float: left;
+        }
+        li,
+        h3 {
+          clear: both;
+          list-style: none;
+        }
+        input,
+        button {
+          outline: none;
+        }
+        button {
+          background: none;
+          border: 0px;
+          color: #888;
+          font-size: 15px;
+          width: 60px;
+          margin: 10px 0 0;
+          font-family: Lato, sans-serif;
+          cursor: pointer;
+        }
+        button:hover {
+          color: #333;
+        }
+        /* Heading */
+        h3,
+        label[for='new-task'] {
+          color: #333;
+          font-weight: 700;
+          font-size: 15px;
+          border-bottom: 2px solid #333;
+          padding: 30px 0 10px;
+          margin: 0;
+          text-transform: uppercase;
+        }
+        input[type='text'] {
+          margin: 0;
+          font-size: 18px;
+          line-height: 18px;
+          height: 18px;
+          padding: 10px;
+          border: 1px solid #ddd;
+          background: #fff;
+          border-radius: 6px;
+          font-family: Lato, sans-serif;
+          color: #888;
+        }
+        input[type='text']:focus {
+          color: #333;
+        }
+
+        /* New Task */
+        label[for='new-task'] {
+          display: block;
+          margin: 0 0 20px;
+        }
+        input#new-task {
+          float: left;
+          width: 318px;
+        }
+        p > button:hover {
+          color: #0fc57c;
+        }
+
+        /* Task list */
+        li {
+          overflow: hidden;
+          padding: 20px 0;
+          border-bottom: 1px solid #eee;
+        }
+        li > input[type='checkbox'] {
+          margin: 0 10px;
+          position: relative;
+          top: 15px;
+        }
+        li > label {
+          font-size: 18px;
+          line-height: 40px;
+          width: 237px;
+          padding: 0 0 0 11px;
+        }
+        li > input[type='text'] {
+          width: 226px;
+        }
+        li > .delete:hover {
+          color: #cf2323;
+        }
+
+        /* Completed */
+        input[type='checkbox']:checked + label{
+          text-decoration: line-through;
+          color: #888;
+        }
+
+        /* Edit Task */
+        ul li input[type='text'] {
+          display: none;
+        }
+
+        ul li.editMode input[type='text'] {
+          display: block;
+        }
+
+        ul li.editMode label {
+          display: none;
         }
       </style>
-      </head>
       <body>
-        <!-- <ul class="list" id="list"></ul>
-        <button type="button" id="sort">Sort</button>
-        <button type="clear" id="clear">Clear</button>
-        <ul class="backet" id="backet"></ul> -->
-        <!-- <form id="form" action="#" class="form">
-          <button id="btn" type="submit">Перевірити</button>
-        </form> -->
-        <p class="output">Selected color: -</p>
-        <div class="color-palette"></div>
-        <script type="module" src="./07-module-lesson-01/index.js"></script>
+        <div class="container">
+          <p>
+            <label for="new-task">Add Item</label
+            ><input id="new-task" type="text" /><button class="add">Add</button>
+          </p>
+          <h3>Todos</h3>
+          <ul id="tasks-list">
+            <li>
+              <input type="checkbox" /><label>Pay Bills</label
+              ><input type="text" /><button class="edit">Edit</button
+              ><button class="delete">Delete</button>
+            </li>
+            <li>
+              <input type="checkbox" /><label>Go Shopping</label
+              ><input type="text" value="Go Shopping" /><button class="edit">
+                Edit</button
+              ><button class="delete">Delete</button>
+            </li>
+          </ul>
+          <script>
+
+            const taskInput = document.getElementById('new-task'); //input to create new task.
+            const addButton = document.querySelector('button.add'); //add button
+            const tasksHolder = document.getElementById('tasks-list'); //ul of todos
+            
+            const createNewTaskElement = newTodo => {
+            return ` <li>
+                  <input type="checkbox" />
+                  <label>${newTodo}</label>
+                  <input type="text" value="${newTodo}" />
+                  <button class="edit">Edit</button>
+                  <button class="delete">Delete</button>
+                </li>`;
+            };
+            const addTask = () => {
+              const taskString = taskInput.value;
+              tasksHolder.insertAdjacentHTML('afterbegin', createNewTaskElement(taskString));
+              taskInput.value = '';
+            };
+            
+            const editTask = event => {
+              const liEl = event.target.parentNode;
+              if (event.target.classList.contains('edit')) {
+                const inputToDo = liEl.querySelector('input[type="text"]');
+                const toDoLabel = liEl.querySelector('label');
+                const toDoEditButton = liEl.querySelector('button.edit');
+                if (!liEl.classList.contains('editMode')) {
+                  inputToDo.value = toDoLabel.textContent;
+                  toDoEditButton.textContent = 'Save';
+                } else {
+                  toDoEditButton.textContent = 'Edit';
+                  toDoLabel.textContent = inputToDo.value;
+                }
+                liEl.classList.toggle('editMode');
+              }
+            };
+            const deleteTask = (event) => {
+              if(event.target.classList.contains("delete")){
+const liEl = event.target.parentNode;
+liEl.remove()
+              }
+
+            };
+            addButton.addEventListener('click', addTask);
+            document.addEventListener("keydown", event => {
+  if(event.target.code === 'Enter'){
+    addTask()
+  }
+});
+            tasksHolder.addEventListener('click', editTask);
+            tasksHolder.addEventListener('click', deleteTask);
+            
+</script>
+
       </body>
     </html>
   </body>

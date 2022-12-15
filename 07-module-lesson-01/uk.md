@@ -50,6 +50,8 @@ You don't have to edit anything from the HTML nor the CSS, only the javascript!
 const taskInput = document.getElementById('new-task'); //input to create new task.
 const addButton = document.querySelector('button.add'); //add button
 const tasksHolder = document.getElementById('tasks-list'); //ul of todos
+const editButton = document.querySelectorAll('button.edit'); //edit button
+const deleteButton = document.querySelectorAll('button.delete'); //delete button
 
 const createNewTaskElement = newTodo => {};
 
