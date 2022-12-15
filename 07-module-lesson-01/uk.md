@@ -31,7 +31,7 @@ function getRandomHex() {
 
 This todo list design is pure css. The css and html are ready, but we need to
 code the Javascript part of the application. Use html from file
-[todo_list.html](./todoList.html).
+[todo_list.html](../06-module-lesson-02/todoList.html).
 
 As you can see, when you initially run, the ability to delete or add items to
 the to-do list does not yet exist!
