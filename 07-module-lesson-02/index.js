@@ -366,7 +366,7 @@
 //     feels_like: -5.45,
 //     temp_min: -1.36,
 //     temp_max: 0.88,
-//     location: 'Poland',
+//     location: 'Poland',f
 //   },
 
 //   {
