@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        background: #444444;
+        color: white;
+        font: 15px/1.51 system, -apple-system, '.SFNSText-Regular',
+          'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue',
+          'Lucida Grande', sans-serif;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+      }
+
+      form {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        padding: 5px;
+        margin: 5px 0 0 0;
+      }
+
+      input {
+        padding: 8px 20px;
+        border-radius: 2px;
+        border: 0;
+        font-size: 20px;
+      }
+      .status-key,
+      .status-ajax {
+        margin: 10px 0;
+      }
+      .status-ajax {
+        color: #99ff7e;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <div class="status-key">
+        Type here. I will detect when you stop typing
+      </div>
+      <input type="text" class="autocomplete" />
+      <div class="status-ajax"></div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  </body>
+</html>

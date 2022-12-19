@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Active header menu</title>
+    <meta charset="UTF-8" />
+    <style>
+      nav {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+      }
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        max-width: 800px;
+        height: 50px;
+        margin: 0 auto;
+        padding: 0;
+      }
+      nav li {
+        display: inline-block;
+        padding: 5px;
+      }
+      nav a {
+        display: block;
+        height: 40px;
+        padding: 0 20px;
+        line-height: 40px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #323232;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in;
+      }
+      nav a:hover,
+      nav a:active,
+      nav a:focus {
+        background-color: rgba(184, 214, 168, 0.5);
+      }
+      nav a.active {
+        background-color: rgba(184, 214, 168, 0.5);
+      }
+      section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      p {
+        text-align: center;
+        color: #fff;
+        font-size: 3.5em;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      #home {
+        background-color: #6ca392;
+      }
+      #about {
+        background-color: #ffa58c;
+      }
+      #products {
+        background-color: #ff4f30;
+      }
+      #reviews {
+        background-color: #576b51;
+      }
+      #contacts {
+        background-color: #392a1b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li><a class="active" data-link="home">Home</a></li>
+        <li><a data-link="about">About</a></li>
+        <li><a data-link="products">Our product</a></li>
+        <li><a data-link="reviews">Reviews</a></li>
+        <li><a data-link="contacts">Contacts</a></li>
+      </ul>
+    </nav>
+    <section id="home">
+      <p>Home</p>
+    </section>
+    <section id="about">
+      <p>About</p>
+    </section>
+    <section id="products">
+      <p>Our product</p>
+    </section>
+    <section id="reviews">
+      <p>Reviews</p>
+    </section>
+    <section id="contacts">
+      <p>Contacts</p>
+    </section>
+  </body>
+</html>

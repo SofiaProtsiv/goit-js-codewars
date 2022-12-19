@@ -1,221 +1,33 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
   </head>
+
   <body>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Todo List</title>
-      </head>
-      <style>
-        body {
-          background: #fff;
-          color: #333;
-          font-family: Lato, sans-serif;
-        }
-        .container {
-          display: block;
-          width: 400px;
-          margin: 100px auto 0;
-        }
-        ul {
-          margin: 0;
-          padding: 0;
-        }
-        li * {
-          float: left;
-        }
-        li,
-        h3 {
-          clear: both;
-          list-style: none;
-        }
-        input,
-        button {
-          outline: none;
-        }
-        button {
-          background: none;
-          border: 0px;
-          color: #888;
-          font-size: 15px;
-          width: 60px;
-          margin: 10px 0 0;
-          font-family: Lato, sans-serif;
-          cursor: pointer;
-        }
-        button:hover {
-          color: #333;
-        }
-        /* Heading */
-        h3,
-        label[for='new-task'] {
-          color: #333;
-          font-weight: 700;
-          font-size: 15px;
-          border-bottom: 2px solid #333;
-          padding: 30px 0 10px;
-          margin: 0;
-          text-transform: uppercase;
-        }
-        input[type='text'] {
-          margin: 0;
-          font-size: 18px;
-          line-height: 18px;
-          height: 18px;
-          padding: 10px;
-          border: 1px solid #ddd;
-          background: #fff;
-          border-radius: 6px;
-          font-family: Lato, sans-serif;
-          color: #888;
-        }
-        input[type='text']:focus {
-          color: #333;
-        }
+    <label for="themeCheck">
+      <input type="checkbox" id="themeCheck" onchange="myFunction()" /> Drak
+      Theme
+    </label>
+    <script>
+      var dragTheme = window.localStorage.getItem('dark-theme'); //get the privious seted value
+      var themeCheckBox = document.getElementById('themeCheck'); // get the checkbox element
+      themeCheckBox.checked = dragTheme == 'true' ? true : false; // set checkbox conditionally base on privious set value if not set then default false
 
-        /* New Task */
-        label[for='new-task'] {
-          display: block;
-          margin: 0 0 20px;
+      function myFunction() {
+        // triger when change value of checkbox
+        if (themeCheckBox.checked) {
+          document.documentElement.setAttribute('dark-theme', 'dark');
+          window.localStorage.setItem('dark-theme', true);
+        } else {
+          document.documentElement.setAttribute('dark-theme', 'light');
+          window.localStorage.setItem('dark-theme', false);
         }
-        input#new-task {
-          float: left;
-          width: 318px;
-        }
-        p > button:hover {
-          color: #0fc57c;
-        }
-
-        /* Task list */
-        li {
-          overflow: hidden;
-          padding: 20px 0;
-          border-bottom: 1px solid #eee;
-        }
-        li > input[type='checkbox'] {
-          margin: 0 10px;
-          position: relative;
-          top: 15px;
-        }
-        li > label {
-          font-size: 18px;
-          line-height: 40px;
-          width: 237px;
-          padding: 0 0 0 11px;
-        }
-        li > input[type='text'] {
-          width: 226px;
-        }
-        li > .delete:hover {
-          color: #cf2323;
-        }
-
-        /* Completed */
-        input[type='checkbox']:checked + label{
-          text-decoration: line-through;
-          color: #888;
-        }
-
-        /* Edit Task */
-        ul li input[type='text'] {
-          display: none;
-        }
-
-        ul li.editMode input[type='text'] {
-          display: block;
-        }
-
-        ul li.editMode label {
-          display: none;
-        }
-      </style>
-      <body>
-        <div class="container">
-          <p>
-            <label for="new-task">Add Item</label
-            ><input id="new-task" type="text" /><button class="add">Add</button>
-          </p>
-          <h3>Todos</h3>
-          <ul id="tasks-list">
-            <li>
-              <input type="checkbox" /><label>Pay Bills</label
-              ><input type="text" /><button class="edit">Edit</button
-              ><button class="delete">Delete</button>
-            </li>
-            <li>
-              <input type="checkbox" /><label>Go Shopping</label
-              ><input type="text" value="Go Shopping" /><button class="edit">
-                Edit</button
-              ><button class="delete">Delete</button>
-            </li>
-          </ul>
-          <script>
-
-            const taskInput = document.getElementById('new-task'); //input to create new task.
-            const addButton = document.querySelector('button.add'); //add button
-            const tasksHolder = document.getElementById('tasks-list'); //ul of todos
-            
-            const createNewTaskElement = newTodo => {
-            return ` <li>
-                  <input type="checkbox" />
-                  <label>${newTodo}</label>
-                  <input type="text" value="${newTodo}" />
-                  <button class="edit">Edit</button>
-                  <button class="delete">Delete</button>
-                </li>`;
-            };
-            const addTask = () => {
-              const taskString = taskInput.value;
-              tasksHolder.insertAdjacentHTML('afterbegin', createNewTaskElement(taskString));
-              taskInput.value = '';
-            };
-            
-            const editTask = event => {
-              const liEl = event.target.parentNode;
-              if (event.target.classList.contains('edit')) {
-                const inputToDo = liEl.querySelector('input[type="text"]');
-                const toDoLabel = liEl.querySelector('label');
-                const toDoEditButton = liEl.querySelector('button.edit');
-                if (!liEl.classList.contains('editMode')) {
-                  inputToDo.value = toDoLabel.textContent;
-                  toDoEditButton.textContent = 'Save';
-                } else {
-                  toDoEditButton.textContent = 'Edit';
-                  toDoLabel.textContent = inputToDo.value;
-                }
-                liEl.classList.toggle('editMode');
-              }
-            };
-            const deleteTask = (event) => {
-              if(event.target.classList.contains("delete")){
-const liEl = event.target.parentNode;
-liEl.remove()
-              }
-
-            };
-            addButton.addEventListener('click', addTask);
-            document.addEventListener("keydown", event => {
-  if(event.target.code === 'Enter'){
-    addTask()
-  }
-});
-            tasksHolder.addEventListener('click', editTask);
-            tasksHolder.addEventListener('click', deleteTask);
-            
-</script>
-
-      </body>
-    </html>
+      }
+    </script>
   </body>
 </html>

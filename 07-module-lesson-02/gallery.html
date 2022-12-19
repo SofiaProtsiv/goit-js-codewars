@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazy gallery</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Squada+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      h1 {
+        font-family: 'Squada One', cursive;
+        text-align: center;
+        font-weight: 100;
+        color: #666;
+        font-size: 52px;
+        margin: 100px 0 0;
+      }
+
+      .gallery {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 960px;
+        margin: 100px auto;
+        box-shadow: 0 0 50px #333;
+      }
+
+      .gallery-item {
+        width: 50%;
+      }
+
+      .gallery-item > img {
+        width: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      img {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      img[data-src] {
+        opacity: 0;
+        transform: scale(0);
+        transition: all 1000ms linear;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="gallery-section">
+      <h1>Lazy Loading Images</h1>
+        <ul class="gallery"></ul>
+      </div>
+    </section>
+  </body>
+</html>
+

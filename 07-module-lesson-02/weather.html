@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        position: relative;
+        height: 100%;
+        line-height: 1;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+        font-family: Montserrat;
+      }
+      .wrapper {
+        min-height: 100%;
+        padding: 50px;
+      }
+      #input-field {
+        display: flex;
+        margin: 0 auto;
+        font: inherit;
+        padding: 8px;
+        width: 350px;
+        height: 50px;
+        border: 2px solid black;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .weather {
+        display: none;
+        background-color: #7a956b;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .weather__header {
+        display: flex;
+      }
+      .weather__main {
+        flex: 1 1 auto;
+      }
+      .weather__city {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+      .weather__status {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .weather__temp {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .weather__temp::after,
+      .weather__feels-like::after {
+        display: inline-block;
+        margin-left: 5px;
+        content: '°C';
+      }
+      #error-text {
+        width: 350px;
+        margin: 0 auto;
+        color: red;
+        text-align: center;
+      }
+    </style>
+    <title>Віджет "Погода"</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <input type="text" id="input-field" />
+      <p id="error-text"></p>
+
+      <div id="weather" class="weather"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
