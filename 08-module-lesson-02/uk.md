@@ -1,6 +1,6 @@
 # Модуль 8. Заняття 16. Local storage
 
-## Example 3 - Counter
+## Example 1 - Counter
 
 - Use HTMl from this file [counter.html](./counter/index.html)
 
@@ -51,7 +51,8 @@ function checkTheme() {
 
 ## Example 3 - Authorization
 
-- Download this folder with starter files [authorization](./authorization)
+- Download this folder with starter files
+  [authorization](./authorization/authorization.zip)
 
 Завдання полягає у сторенні імітації реєстрації та входу користувача в особистий
 кабінет. Використовуй локалальне сховище щоб зберігати "реєстраційні дані".
