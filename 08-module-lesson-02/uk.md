@@ -52,7 +52,7 @@ function checkTheme() {
 ## Example 3 - Authorization
 
 - Download this folder with starter files
-  [authorization](./authorization/authorization.zip)
+  [authorization](./authorization/src.zip)
 
 Завдання полягає у сторенні імітації реєстрації та входу користувача в особистий
 кабінет. Використовуй локалальне сховище щоб зберігати "реєстраційні дані".
@@ -63,3 +63,87 @@ function checkTheme() {
 
 - [Notifli](https://github.com/notiflix/Notiflix#readme)
 - [Joi](https://joi.dev/api/?v=17.7.0)
+
+# Example 4 - Food service
+
+Створи сторінку меню з можливістю вибору теми для сервісу замовлення їжі.
+[Посилання на демо відео](https://monosnap.com/file/ergR3f8MzeZo7hMAzbQBdvaw6XYrrE).
+
+- У папці [src](./foodservice/src.zip) ти знайдеш стартову розмітку, стилі та
+  дані
+
+## Тема
+
+Реалізуй функціонал зміни теми при натисканні (подія `change`) на чекбокс
+`input.js-switch-input` у тулбарі.
+
+- За промовчанням тема світла.
+- При зміні теми необхідно додавати на елемент `body` клас `light-theme`або
+  `dark-theme`.
+- Вибрана тема повинна зберігатись між перезавантаженнями сторінки. Для
+  зберігання активної теми використовуй localStorage.
+- Якщо при завантаженні сторінки тема темна, не забудь поставити властивість
+  `checked` у чекбокса `input.js-switch-input` в `true`, щоб повзунок зрушив у
+  правильне становище.
+
+Для зручності зберігання списку використовуй такий перелік `Theme`.
+
+```js
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+```
+
+## Шаблонізація
+
+Використовуючи шаблонізатор [Handlebars](https://handlebarsjs.com/) створи
+шаблон одиного елемента меню. Після цього, використовуючи шаблон, створи
+розмітку всього меню за даними з menu.json і додай у DOM в `ul.js-menu`.
+
+Для іконок використовуємо `Material Icons`, лінк на веб-фонт вже є у вихідному
+HTML.
+
+Нижче вказана розмітка елемента меню, яка повинна виходити за шаблоном (дані
+будуть різні кожному за об'єкта).
+
+```html
+<li class="menu__item">
+  <div class="card">
+    <img
+      src="https://s1.eda.ru/StaticContent/Photos/140812180013/140820212258/p_O.jpg"
+      alt="Картопля, запечена в мундирі"
+      class="card__image"
+    />
+    <div class="card__content">
+      <h2 class="card__name">Картопля, запечена в мундирі</h2>
+      <p class="card__price">
+        <i class="material-icons">monetization_on</i>
+        100 кредитів
+      </p>
+
+      <p class="card__descr">
+        Ароматна, ситна, шипляча домашня картопля, фарширована сметанно-беконною
+        начинкою — це дуже простий і дуже ефектний спосіб. нагодувати велику
+        кількість людей, практично не витративши на готування ні сил, ні часу.
+        Звичайну картоплю за бажання тут можна замінити на солодкий батат, а
+        начинку додати, наприклад, кукурудзу або солодкий червоний перець.
+      </p>
+
+      <ul class="tag-list">
+        <li class="tag-list__item">Картопля</li>
+        <li class="tag-list__item">Часник</li>
+        <li class="tag-list__item">Сметана</li>
+        <li class="tag-list__item">Бекон</li>
+        <li class="tag-list__item">Твердий сир</li>
+        <li class="tag-list__item">Зелена цибуля</li>
+      </ul>
+    </div>
+
+    <button class="card__button button">
+      <i class="material-icons button__icon">shopping_cart</i>
+      В кошик
+    </button>
+  </div>
+</li>
+```

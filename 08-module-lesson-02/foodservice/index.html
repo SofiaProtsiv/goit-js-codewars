@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Food Service</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="toolbar">
+      <!-- Розмітка theme switch -->
+      <div class="theme-switch">
+        <svg class="theme-switch__icon" role="img" aria-label="Light theme">
+          🌞
+        </svg>
+
+        <div class="theme-switch__control">
+          <input
+            class="theme-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Theme switcher"
+          />
+          <label
+            aria-hidden="true"
+            class="theme-switch__track"
+            for="theme-switch-toggle"
+          >
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
+
+        <svg class="theme-switch__icon" aria-label="Dark theme">🌚</svg>
+      </div>
+    </div>
+
+    <!-- В цей список рендери розмітку меню -->
+    <ul class="menu js-menu"></ul>
+  </body>
+</html>
