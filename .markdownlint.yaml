@@ -1,2 +1,38 @@
-MD024: false
-MD033: false
+# js-22
+
+- термінал
+   - [Шпаргалка 1] (https://tproger.ru/translations/bash-cheatsheet/)
+   - [Шпаргалка 2](https://habr.com/ua/company/ruvds/blog/445270/)
+   - Відкрити
+     - `control + ~`
+     - `view > teminal`
+     - через палітру `command+shift+p`
+   - Основні корисні команди
+     - Шлях (pwd)
+     - лист (ls)
+     - Навігація (cd)
+     - очищення `clear` або `control + l`
+     - Створення файлів (touch)
+     - Створення папок (mkdir)
+     - перейменування/переміщення (mv)
+     - Видалення (rm)
+- Node.js та npm
+   - встановлення
+   - ініціалізація та package.json
+   - [npmjs.com](https://www.npmjs.com/)
+   - робота з пакетами
+     - встановлення
+     - Видалення
+   - CommonJS модулі
+   - npm-скрипти
+     - pre та post
+- Транспіляція коду
+   - [Babel](https://babeljs.io/)
+   - CLI та npm-скрипти
+   - Пресети
+   - [Browserslist](https://github.com/browserslist/browserslist)
+- [Складальник Parcel](https://parceljs.org/)
+- [ECMAScript модулі](https://exploringjs.com/es6/ch_modules.html)
+   - Дефолтний (default) експорт та імпорт
+   - Іменований (named) експорт та імпорт
+   - Імпорт простору імен (namespace)
