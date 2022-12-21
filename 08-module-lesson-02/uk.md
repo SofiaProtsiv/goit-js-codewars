@@ -64,7 +64,7 @@ function checkTheme() {
 - [Notifli](https://github.com/notiflix/Notiflix#readme)
 - [Joi](https://joi.dev/api/?v=17.7.0)
 
-# Example 4 - Food service
+## Example 4 - Food service
 
 Створи сторінку меню з можливістю вибору теми для сервісу замовлення їжі.
 [Посилання на демо відео](https://monosnap.com/file/ergR3f8MzeZo7hMAzbQBdvaw6XYrrE).
@@ -72,7 +72,7 @@ function checkTheme() {
 - У папці [src](./foodservice/src.zip) ти знайдеш стартову розмітку, стилі та
   дані
 
-## Тема
+### Тема
 
 Реалізуй функціонал зміни теми при натисканні (подія `change`) на чекбокс
 `input.js-switch-input` у тулбарі.
@@ -95,7 +95,7 @@ const Theme = {
 };
 ```
 
-## Шаблонізація
+### Шаблонізація
 
 Використовуючи шаблонізатор [Handlebars](https://handlebarsjs.com/) створи
 шаблон одиного елемента меню. Після цього, використовуючи шаблон, створи
