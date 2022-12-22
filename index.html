@@ -3,205 +3,886 @@
   <head>
     <meta charset="UTF-8" />
     <title>Whack A Mole!</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <style>
-      html {
-        box-sizing: border-box;
-        font-size: 10px;
-        background: #ffc600;
-      }
 
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
       body {
-        padding: 0;
-        margin: 0;
-        font-family: 'Amatic SC', cursive;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f1f1f1;
+        line-height: 1.7;
+        color: #323330;
       }
 
-      h1 {
-        text-align: center;
-        font-size: 10rem;
-        line-height: 1;
-        margin-bottom: 0;
+      a {
+        text-decoration: none;
+        color: #f2bb13;
       }
 
-      .score {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 0 3rem;
-        line-height: 1;
-        border-radius: 1rem;
+      a:hover {
+        text-decoration: underline;
       }
 
-      .game {
-        width: 600px;
-        height: 400px;
+      .container {
         display: flex;
-        flex-wrap: wrap;
-        margin: 0 auto;
+        flex-direction: row;
+      }
+      .container h2 {
+        font-size: 1.2rem;
+        font-weight: normal;
       }
 
-      .hole {
-        flex: 1 0 33.33%;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .hole:after {
-        display: block;
-        background: url(dirt.svg) bottom center no-repeat;
-        background-size: contain;
-        content: '';
-        width: 100%;
-        height: 70px;
-        position: absolute;
-        z-index: 2;
-        bottom: -30px;
-      }
-
-      .mole {
-        background: url('mole.svg') bottom center no-repeat;
-        background-size: 60%;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        transition: all 0.4s;
-      }
-
-      .hole.up .mole {
-        top: 0;
-      }
-      button {
-        display: block;
-        background-color: #fff000;
-        border-radius: 12px;
-        color: #000;
-        cursor: pointer;
-        font-weight: bold;
-        padding: 10px 15px;
+      .container .user {
+        background-color: #fff;
+        padding: 2rem;
+        border: solid 1px #ccd0d4;
+        border-radius: 0.3rem;
         text-align: center;
-        transition: 200ms;
-        width: 150px;
-        margin: 0 auto;
-        margin-top: 40px;
-        box-sizing: border-box;
-        border: 0;
-        font-size: 16px;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
+        margin: 1rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       }
-      button:disabled {
-        background-color: #ff8819;
+
+      .container img {
+        border-radius: 50%;
+        padding: 1rem;
+        background-color: #f4f4f4;
+      }
+
+      @media (max-width: 560px) {
+        .container {
+          display: flex;
+          flex-direction: column;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Whack-a-mole! <span class="score">0</span></h1>
-    <button type="button">Start!</button>
-
-    <div class="game">
-      <div class="hole hole1">
-        <div class="mole"></div>
+    <div class="container"></div>
+    <!-- <div>
+      <img src="https://i.imgur.com/MQCOxiW.jpeg" />
+      <h3>Hot Spicy Feast</h3>
+      <p>Beef, onions, black olives and jalapenos</p>
+      <div>
+        <div>
+          35 Egp
+        </div>
       </div>
-      <div class="hole hole2">
-        <div class="mole"></div>
-      </div>
-      <div class="hole hole3">
-        <div class="mole"></div>
-      </div>
-      <div class="hole hole4">
-        <div class="mole"></div>
-      </div>
-      <div class="hole hole5">
-        <div class="mole"></div>
-      </div>
-      <div class="hole hole6">
-        <div class="mole"></div>
-      </div>
-    </div>
-
+    </div> -->
     <script>
-      const startBtn = document.querySelector('button');
-      const holes = document.querySelectorAll('.hole');
-      const scoreBoard = document.querySelector('.score');
-      const moles = document.querySelectorAll('.mole');
-
-      let lastHole;
-      let timeUp = false;
-      let score = 0;
-      let timer;
-      let timeLeft = 9; // seconds
-
-      function randomTime(min, max) {
-        return Math.round(Math.random() * (max - min) + min);
-      }
-
-      function randomHole(holes) {
-        const idx = Math.floor(Math.random() * holes.length);
-        const hole = holes[idx];
-
-        if (hole === lastHole) {
-          return randomHole(holes);
+      async function getUsers() {
+        let url = 'users.json';
+        try {
+          let res = fetch(url);
+          return res.json();
+        } catch (error) {
+          console.log(error);
         }
-
-        lastHole = hole;
-        return hole;
       }
 
-      function peep() {
-        const time = randomTime(500, 1000);
-        const hole = randomHole(holes);
+      async function renderUsers() {
+        let users = getUsers();
+        let html = '';
 
-        hole.classList.add('up');
+        users.map(user => {
+          let htmlSegment = `<div class="user">
+                             <img src="${user.profileURL}" >
+                             <h2>${user.firstName} ${user.lastName}</h2>
+                             <div class="email"><a href="email:${user.email}">${user.email}</a></div>
+                           </div>`;
+          html += htmlSegment;
+        });
 
-        setTimeout(() => {
-          hole.classList.remove('up');
-          if (!timeUp) peep();
-        }, time);
+        let container = document.querySelector('.container');
+        container.innerHTML = html;
       }
 
-      function startGame() {
-        scoreBoard.textContent = 0;
+      renderUsers();
+      //   // To experiment with error handling, "threshold" values cause errors randomly
+      //   const THRESHOLD_A = 8; // can use zero 0 to guarantee error
 
-        startBtn.innerText = `00:10`;
+      //   function tetheredGetNumber(resolve, reject) {
+      //     setTimeout(() => {
+      //       const randomInt = Date.now();
+      //       const value = randomInt % 10;
+      //       if (value < THRESHOLD_A) {
+      //         resolve(value);
+      //       } else {
+      //         reject(`Too large: ${value}`);
+      //       }
+      //     }, 500);
+      //   }
 
-        setInterval(() => {
-          if (timeLeft === 0) {
-            clearTimeout();
-            startBtn.innerText = 'Game Over';
-            startBtn.disabled = true;
-          } else {
-            startBtn.innerText = `00:0${timeLeft}`;
-            timeLeft--;
-          }
-        }, 1000);
+      //   function determineParity(value) {
+      //     const isOdd = value % 2 === 1;
+      //     return { value, isOdd };
+      //   }
 
-        peep();
-        setTimeout(() => (timeUp = true), 10000);
-      }
+      //   function troubleWithGetNumber(reason) {
+      //     const err = new Error('Trouble getting number', { cause: reason });
+      //     console.error(err);
+      //     throw err;
+      //   }
 
-      function bonk(e) {
-        if (!e.isTrusted) return;
+      //   function promiseGetWord(parityInfo) {
+      //     return new Promise((resolve, reject) => {
+      //       const { value, isOdd } = parityInfo;
+      //       if (value >= THRESHOLD_A - 1) {
+      //         reject(`Still too large: ${value}`);
+      //       } else {
+      //         parityInfo.wordEvenOdd = isOdd ? 'odd' : 'even';
+      //         resolve(parityInfo);
+      //       }
+      //     });
+      //   }
 
-        score++;
+      //   new Promise(tetheredGetNumber)
+      //     .then(determineParity, troubleWithGetNumber)
+      //     .then(promiseGetWord)
+      //     .then(info => {
+      //       console.log(`Got: ${info.value}, ${info.wordEvenOdd}`);
+      //       return info;
+      //     })
+      //     .catch(reason => {
+      //       if (reason.cause) {
+      //         console.error('Had previously handled error');
+      //       } else {
+      //         console.error(`Trouble with promiseGetWord(): ${reason}`);
+      //       }
+      //     })
+      //     .finally(info => console.log('All done'));
 
-        this.parentNode.classList.remove('up');
-        scoreBoard.textContent = score;
-      }
+      // Returns a shop id
+      //   const menu = [
+      //     {
+      //       name: 'BBQ Feast',
+      //       image: 'https://i.imgur.com/O8mTkO7.jpg',
+      //       pizzaType: ['chicken'],
+      //       price: 30,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'BBQ Sauce',
+      //           icon: 'https://i.imgur.com/8dxLUAE.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Marinated Chicken',
+      //           icon: 'https://i.imgur.com/9mgcbeE.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //       ],
+      //       ingDescription: 'Marinated Chicken, BBQ Sauce with Onions',
+      //     },
+      //     {
+      //       name: 'Delux Feast',
+      //       image: 'https://i.imgur.com/Xu61fbu.jpg',
+      //       pizzaType: ['beef'],
+      //       price: 50,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Mushrooms',
+      //           icon: 'https://i.imgur.com/wlNbkpY.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Italian Sausage',
+      //           icon: 'https://i.imgur.com/u8vKJwQ.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Green peppers',
+      //           icon: 'https://i.imgur.com/4eKDshi.png',
+      //           state: 'regular',
+      //           price: 1,
+      //         },
+      //         {
+      //           ingredient: 'Beef pepperoni',
+      //           icon: 'https://i.imgur.com/K8hIfol.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'Beef pepperoni, Italian sausage, Green peppers, mushrooms & onions',
+      //     },
+      //     {
+      //       name: 'Margherita',
+      //       image: 'https://i.imgur.com/qMhGGtL.jpg',
+      //       pizzaType: ['cheese'],
+      //       price: 40,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Mozzarella Cheese',
+      //           icon: 'https://i.imgur.com/rW86yJe.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'A rich layer of 100% real mozzarella cheese. Enjoy it on its own',
+      //     },
+      //     {
+      //       name: 'Extravaganzza Feast',
+      //       image: 'https://i.imgur.com/FQiukqk.jpeg',
+      //       pizzaType: ['pepperoni'],
+      //       price: 55,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Mushrooms',
+      //           icon: 'https://i.imgur.com/wlNbkpY.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Italian Sausage',
+      //           icon: 'https://i.imgur.com/u8vKJwQ.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Green peppers',
+      //           icon: 'https://i.imgur.com/4eKDshi.png',
+      //           state: 'regular',
+      //           price: 1,
+      //         },
+      //         {
+      //           ingredient: 'Beef pepperoni',
+      //           icon: 'https://i.imgur.com/K8hIfol.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Black Olives',
+      //           icon: 'https://i.imgur.com/PFvzIp9.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Beef',
+      //           icon: 'https://i.imgur.com/PFvzIp9.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'Beef pepperoni, Italian sausage, beef, onions, green peppers, mushrooms & black olives',
+      //     },
+      //     {
+      //       name: 'Hot & Spicy Feast',
+      //       image: 'https://i.imgur.com/MQCOxiW.jpeg',
+      //       pizzaType: ['beef'],
+      //       price: 35,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Black Olives',
+      //           icon: 'https://i.imgur.com/PFvzIp9.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Beef',
+      //           icon: 'https://i.imgur.com/PFvzIp9.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Jalapenos',
+      //           icon: 'https://i.imgur.com/FWPWDyZ.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //       ],
+      //       ingDescription: 'Beef, onions, black olives and jalapenos',
+      //     },
+      //     {
+      //       name: 'Hawaiian Feast',
+      //       image: 'https://i.imgur.com/rcSZnVN.jpeg',
+      //       pizzaType: ['pepperoni'],
+      //       price: 40,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Sweet Hawaiian pineapple',
+      //           icon: 'https://i.imgur.com/EmMeYFS.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Beef pepperoni',
+      //           icon: 'https://i.imgur.com/K8hIfol.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //       ],
+      //       ingDescription: 'Sweet Hawaiian pineapple & beef pepperoni',
+      //     },
+      //     {
+      //       name: 'Italiano Feast',
+      //       image: 'https://i.imgur.com/o4Km2pD.jpg',
+      //       pizzaType: ['pepperoni'],
+      //       price: 50,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Italian Sausage',
+      //           icon: 'https://i.imgur.com/u8vKJwQ.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Beef pepperoni',
+      //           icon: 'https://i.imgur.com/K8hIfol.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Mushrooms',
+      //           icon: 'https://i.imgur.com/wlNbkpY.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //       ],
+      //       ingDescription: 'Beef pepperoni, mushrooms and Italiano sausage',
+      //     },
+      //     {
+      //       name: 'Meatzza Feast',
+      //       image: 'https://i.imgur.com/3ZGFWjX.jpeg',
+      //       pizzaType: ['pepperoni', 'beef'],
+      //       price: 125,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Italian Sausage',
+      //           icon: 'https://i.imgur.com/u8vKJwQ.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Beef pepperoni',
+      //           icon: 'https://i.imgur.com/K8hIfol.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Beef',
+      //           icon: 'https://i.imgur.com/PFvzIp9.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //       ],
+      //       ingDescription: 'Beef pepperoni, Italian sausage & beef',
+      //     },
+      //     {
+      //       name: 'Pepperoni Feast',
+      //       image: 'https://i.imgur.com/8M6zSLB.jpeg',
+      //       pizzaType: ['Pepperoni', 'special'],
+      //       price: 80,
+      //       ingredients: [
+      //         {
+      //           ingredient: "Pizza Hub's Special Sauce",
+      //           icon: 'https://i.imgur.com/1loIqQN.png',
+      //           state: 'regular',
+      //           price: 4,
+      //         },
+      //         {
+      //           ingredient: 'Mozzarella Cheese',
+      //           icon: 'https://i.imgur.com/rW86yJe.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Beef pepperoni',
+      //           icon: 'https://i.imgur.com/K8hIfol.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         "Beef Pepperoni with Mozzarella and Pizza Hub's Special Sauce",
+      //     },
+      //     {
+      //       name: 'Tex-Mex Feast',
+      //       image: 'https://i.imgur.com/tMG1FMS.jpg',
+      //       pizzaType: ['chicken'],
+      //       price: 25,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Marinated Chicken',
+      //           icon: 'https://i.imgur.com/9mgcbeE.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Green peppers',
+      //           icon: 'https://i.imgur.com/4eKDshi.png',
+      //           state: 'regular',
+      //           price: 1,
+      //         },
+      //         {
+      //           ingredient: 'Black Olives',
+      //           icon: 'https://i.imgur.com/PFvzIp9.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'Marinated chicken topped with onions, green pepper and black olives. Spice it up with jalapenos',
+      //     },
+      //     {
+      //       name: 'Chicken Legend Ranch',
+      //       image: 'https://i.imgur.com/WAcHjuT.jpg',
+      //       pizzaType: ['chicken'],
+      //       price: 70,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Grilled Chicken',
+      //           icon: 'https://i.imgur.com/OzRv7v3.png',
+      //           state: 'regular',
+      //           price: 15,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Ranch',
+      //           icon: 'https://i.imgur.com/etTFmM0.png',
+      //           state: 'regular',
+      //           price: 6,
+      //         },
+      //       ],
+      //       ingDescription: 'Pure breast grilled chicken, onions, with ranch',
+      //     },
+      //     {
+      //       name: 'Chicken Legend Hot',
+      //       image: 'https://i.imgur.com/GyN4fJo.jpeg',
+      //       pizzaType: ['chicken'],
+      //       price: 65,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Grilled Chicken',
+      //           icon: 'https://i.imgur.com/OzRv7v3.png',
+      //           state: 'regular',
+      //           price: 15,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Hot Sauce',
+      //           icon: 'https://i.imgur.com/a4InqZ5.png',
+      //           state: 'regular',
+      //           price: 6,
+      //         },
+      //       ],
+      //       ingDescription: 'Pure breast grilled chicken, onions, with hot Sauce',
+      //     },
+      //     {
+      //       name: 'Chicken Legend BBQ',
+      //       image: 'https://i.imgur.com/muowafB.jpeg',
+      //       pizzaType: ['chicken'],
+      //       price: 80,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Grilled Chicken',
+      //           icon: 'https://i.imgur.com/OzRv7v3.png',
+      //           state: 'regular',
+      //           price: 15,
+      //         },
+      //         {
+      //           ingredient: 'Cheese',
+      //           icon: 'https://i.imgur.com/8PHUUHe.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'BBQ Sauce',
+      //           icon: 'https://i.imgur.com/8dxLUAE.png',
+      //           state: 'regular',
+      //           price: 6,
+      //         },
+      //       ],
+      //       ingDescription: 'Pure breast grilled chicken, onions, with BBQ sauce',
+      //     },
+      //     {
+      //       name: 'Phily Cheese Steak',
+      //       image: 'https://i.imgur.com/ivOQIIE.jpeg',
+      //       pizzaType: ['beef', 'cheese'],
+      //       price: 150,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Philly Steak',
+      //           icon: 'https://i.imgur.com/SRNA7Wa.png',
+      //           state: 'regular',
+      //           price: 20,
+      //         },
+      //         {
+      //           ingredient: 'Melted Cheese',
+      //           icon: 'https://i.imgur.com/rW86yJe.png',
+      //           state: 'regular',
+      //           price: 6,
+      //         },
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Green peppers',
+      //           icon: 'https://i.imgur.com/4eKDshi.png',
+      //           state: 'regular',
+      //           price: 1,
+      //         },
+      //         {
+      //           ingredient: 'Mushrooms',
+      //           icon: 'https://i.imgur.com/wlNbkpY.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'Tender slices of Philly steak with a blend of melted cheese, onions, green peppers & mushrooms',
+      //     },
+      //     {
+      //       name: 'Kickers Pizza BBQ Sauce',
+      //       image: 'https://i.imgur.com/PeNiyNs.jpg',
+      //       pizzaType: ['chicken', 'special'],
+      //       price: 120,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Chicken Kickers',
+      //           icon: 'https://i.imgur.com/9mgcbeE.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Mozzarella Cheese',
+      //           icon: 'https://i.imgur.com/rW86yJe.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'BBQ Sauce',
+      //           icon: 'https://i.imgur.com/8dxLUAE.png',
+      //           state: 'regular',
+      //           price: 6,
+      //         },
+      //         {
+      //           ingredient: 'Jalapenos',
+      //           icon: 'https://i.imgur.com/FWPWDyZ.png',
+      //           state: 'regular',
+      //           price: 3,
+      //         },
+      //         {
+      //           ingredient: 'Onions',
+      //           icon: 'https://i.imgur.com/Iu7u48M.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'Chicken Kickers, onions, mozzarella cheese, american slices cheese and jalapeno with a hint of oregano topped with BBQ Sauce',
+      //     },
+      //     {
+      //       name: 'Alfredo Pizza',
+      //       image: 'https://i.imgur.com/OWFcvkH.jpg',
+      //       pizzaType: ['chicken', 'special'],
+      //       price: 100,
+      //       ingredients: [
+      //         {
+      //           ingredient: 'Alfredo Sauce',
+      //           icon: 'https://i.imgur.com/MLNhEZK.jpg',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Mozzarella Cheese',
+      //           icon: 'https://i.imgur.com/rW86yJe.png',
+      //           state: 'regular',
+      //           price: 5,
+      //         },
+      //         {
+      //           ingredient: 'Mushrooms',
+      //           icon: 'https://i.imgur.com/wlNbkpY.png',
+      //           state: 'regular',
+      //           price: 2,
+      //         },
+      //         {
+      //           ingredient: 'Grilled Chicken',
+      //           icon: 'https://i.imgur.com/OzRv7v3.png',
+      //           state: 'regular',
+      //           price: 15,
+      //         },
+      //       ],
+      //       ingDescription:
+      //         'Original Alfredo Sauce, Grilled Chicken Breast Pieces, Mozzarella Cheese, Slices of Fresh Mushroom.',
+      //     },
+      //   ];
 
-      moles.forEach(mole => mole.addEventListener('click', bonk));
-      startBtn.addEventListener('click', startGame);
+      //   // Returns a promise with pizza that matches the customer request
+      //   let getMyPizza = (result, type, name) => {
+      //     let myPizza = result.find(pizza => {
+      //       return (
+      //         pizza.name.toLowerCase() === name.toLowerCase() &&
+      //         pizza.pizzaType.some(pizza => pizza === type)
+      //       );
+      //     });
+      //     return myPizza;
+      //   };
+
+      //   // Returns a promise after Placing the order
+      //   let performOrder = result => {
+      //     const { name, image, pizzaType, price, ingredients } = result;
+      //     let ingredientsArr = [];
+      //     ingredients.forEach(({ ingredient }) =>
+      //       ingredientsArr.push(ingredient)
+      //     );
+      //     return `    <div>
+      //   <img src="${image}" />
+      //   <h3>${pizzaType.join(', ')}</h3>
+      //   <p>${ingredientsArr.join(', ')}</p>
+      //   <div>
+      //     <div>
+      //     ${price} UAH
+      //     </div>
+      //   </div>
+      // </div>`;
+      //   };
+
+      //   // Confirm the order
+      //   let confirmOrder = result => {
+      //     document.body.insertAdjacentHTML('afterbegin', result);
+      //     console.log(
+      //       `Your order of ${result.type} ${result.name} with ${result.beverage} has been placed!`
+      //     );
+      //   };
+
+      //   function orderPizza(type, name) {
+      //     new Promise((resolve, reject) => {
+      //       resolve(menu);
+      //     })
+      //       .then(result => getMyPizza(result, type, name))
+      //       .then(result => performOrder(result))
+      //       .then(result => confirmOrder(result))
+      //       .catch(function (error) {
+      //         console.log(`Bad luck, No Pizza for you today!`);
+      //       });
+      //   }
+
+      //   orderPizza('beef', 'Phily Cheese Steak');
+      //   let success = true;
+      //   const username = 'sofia';
+      //   function getUsers() {
+      //     return new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         if (success) {
+      //           resolve([
+      //             { username: 'john', email: 'john@test.com' },
+      //             { username: 'jane', email: 'jane@test.com' },
+      //           ]);
+      //         } else {
+      //           reject('Failed to the user list');
+      //         }
+      //       }, 1000);
+      //     });
+      //   }
+      //   const render = () => {
+      //     console.log('good job');
+      //   };
+      //   getUsers()
+      //     .then(users => {
+      //       return users.find(user => user.username === username);
+      //     })
+      //     .catch(error => {
+      //       console.log(error);
+      //     })
+      //     .finally(() => {
+      //       render();
+      //     });
+
+      //   const fetch = function (url) {
+      //     return new Promise((resolve, reject) => {
+      //       request((error, apiResponse) => {
+      //         if (error) {
+      //           reject(error);
+      //         }
+
+      //         resolve(apiResponse);
+      //       });
+      //     });
+      //   };
+      //   setTimeout(function () {
+      //     console.log(1);
+      //     setTimeout(function () {
+      //       console.log(2);
+      //       setTimeout(function () {
+      //         console.log(3);
+      //         setTimeout(function () {
+      //           console.log(4);
+      //           setTimeout(function () {
+      //             console.log(5);
+      //           }, 1000);
+      //         }, 1000);
+      //       }, 1000);
+      //     }, 1000);
+      //   }, 1000);
+
+      //   const getEmployeeIds = new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       resolve([1, 2, 3, 4, 5]);
+      //     }, 1000);
+      //   });
+
+      //   const Employee = employeeID => {
+      //     return new Promise((resolve, reject) => {
+      //       setTimeout(
+      //         id => {
+      //           const employee = {
+      //             name: 'Bruno',
+      //             role: 'UI Engineer',
+      //           };
+      //           resolve(employee);
+      //         },
+      //         1500,
+      //         employeeID
+      //       );
+      //     });
+      //   };
+
+      //   async function getEmployee() {
+      //     const Ids = await getEmployeeIds;
+      //     const employee = Employee(Ids[5]);
+      //     return employee;
+      //   }
+
+      //   getEmployee().then(employee => {
+      //     console.log(employee);
+      //   });
+      //   let names = ['iliakan', 'remy', 'jeresig'];
+
+      //   let requests = names.map(name =>
+      //     fetch(`https://api.github.com/users/${name}`)
+      //   );
+
+      //   Promise.all(requests)
+      //     .then(responses => {
+      //       // все промисы успешно завершены
+      //       for (let response of responses) {
+      //         console.log(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
+      //       }
+      //       return responses;
+      //     })
+      //     // преобразовать массив ответов response в response.json(),
+      //     // чтобы прочитать содержимое каждого
+      //     .then(responses => Promise.all(responses.map(r => r.json())))
+      //     // все JSON-ответы обработаны, users - массив с результатами
+      //     .then(users => users.forEach(user => console.log(user.name)));
     </script>
   </body>
 </html>

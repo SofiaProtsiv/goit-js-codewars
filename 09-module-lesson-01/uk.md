@@ -1,4 +1,4 @@
-# Модуль 8. Заняття 17. Timers and date. Asynchrony
+# Модуль 9. Заняття 17. Timers and date. Asynchrony
 
 ## Example 1 - Alarm clock
 
