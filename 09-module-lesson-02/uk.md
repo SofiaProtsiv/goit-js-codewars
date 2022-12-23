@@ -65,7 +65,7 @@ promise1.then(res => {
 console.log('end');
 ```
 
-### 5 - smth strange
+### 5 - promise and function
 
 ```js
 console.log('start');
@@ -115,6 +115,7 @@ const promise = new Promise((resolve, reject) => {
 
 ```js
 const promise = new Promise(res => res(2));
+
 promise
   .then(v => {
     console.log(v);
@@ -183,35 +184,7 @@ Promise.race([
 ]).then(alert);
 ```
 
-### 13 - any
-
-```js
-Promise.any([
-  new Promise((resolve, reject) =>
-    setTimeout(() => reject(new Error('Error!')), 1000)
-  ),
-  new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
-  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000)),
-]).then(alert);
-```
-
-### 13 - any
-
-```js
-Promise.any([
-  new Promise((resolve, reject) =>
-    setTimeout(() => reject(new Error('Error!')), 1000)
-  ),
-  new Promise((resolve, reject) =>
-    setTimeout(() => reject(new Error('Oops one more error!')), 2000)
-  ),
-]).catch(error => {
-  console.log(error.errors[0]);
-  console.log(error.errors[1]);
-});
-```
-
-### 14 - Microtasks are mixed with macrotasks
+### 13 - Microtasks are mixed with macrotasks
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -231,7 +204,7 @@ promise.then(res => {
 console.log(4);
 ```
 
-### 15 - prioritize microtasks and macrotasks
+### 14 - prioritize microtasks and macrotasks
 
 ```js
 const timer1 = setTimeout(() => {
@@ -247,7 +220,7 @@ const timer2 = setTimeout(() => {
 }, 0);
 ```
 
-### 16 - typical interview question
+### 15 - typical interview question
 
 ```js
 console.log('start');
