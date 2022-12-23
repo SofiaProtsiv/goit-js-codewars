@@ -285,7 +285,20 @@ function delay(ms) {
 delay(3000).then(() => alert('Я виконався через 3 секунди'));
 ```
 
-## Example 3 - Fetch
+## Example 3 - Async function
+
+Створи функцію `addAsync` яка приймає 2 параметра, числа, і `повертає Promise`,
+якщо валідні та передані аргументи то ми повертаємо суму, але якщо ми передамо
+лише 1 аргумент чи жодного буде помилка
+`new Error('Must provide two parameters')`
+
+Використовуй `new Promise`, `then` та `catch`, щоб виводити результат
+
+```js
+function addAsync(x, y) {}
+```
+
+## Example 4 - Fetch
 
 Use [Github API](https://api.github.com/users) to get info about your github
 

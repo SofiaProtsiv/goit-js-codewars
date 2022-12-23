@@ -52,3 +52,18 @@ Promise.all(requests)
   .then(responses => Promise.all(responses.map(r => r.json())))
   // все JSON-ответы обработаны, users - массив с результатами
   .then(users => users.forEach(user => console.log(user.name)));
+
+/// exercise 4
+function addAsync(x, y) {
+  return new Promise((resolve, reject) => {
+    if (x === undefined || y === undefined) {
+      reject('Must provide two parameters');
+      // reject(new Error('Must provide two parameters'));
+    } else {
+      resolve(x + y);
+    }
+  });
+}
+addAsync(2, 4)
+  .then(res => console.log(res))
+  .catch(error => console.log(error));

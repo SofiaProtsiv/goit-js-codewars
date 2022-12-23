@@ -789,19 +789,22 @@
       //       });
       //     });
       //   };
-      // function addAsync(x, y) {
-      //   return new Promise((resolve, reject) => {
-      //     if (x === undefined || y === undefined) {
-      //       reject('Must provide two parameters');
-      //       // reject(new Error('Must provide two parameters'));
-      //     } else {
-      //       resolve(x + y);
-      //     }
-      //   });
-      // }
-      // addAsync(2, 4)
-      //   .then(res => console.log(res))
-      //   .catch(error => console.log(error));
+      function addAsync(x, y) {
+        return new Promise((resolve, reject) => {
+          if (x === undefined || y === undefined) {
+            reject('Must provide two parameters');
+            // reject(new Error('Must provide two parameters'));
+          } else {
+            console.log('Розрахунок...');
+            setTimeout(() => {
+              resolve(x + y);
+            }, 1000);
+          }
+        });
+      }
+      addAsync(2, 4)
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
 
       // const promise = new Promise((resolve, reject) => {
       //   setTimeout(() => {
