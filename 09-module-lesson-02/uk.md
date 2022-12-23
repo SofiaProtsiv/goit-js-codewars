@@ -188,7 +188,7 @@ Promise.race([
 ```js
 Promise.any([
   new Promise((resolve, reject) =>
-    setTimeout(() => reject(new Error('Ошибка!')), 1000)
+    setTimeout(() => reject(new Error('Error!')), 1000)
   ),
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
   new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000)),
@@ -283,4 +283,24 @@ function delay(ms) {
 }
 
 delay(3000).then(() => alert('Я виконався через 3 секунди'));
+```
+
+## Example 3 - Fetch
+
+Use [Github API](https://api.github.com/users) to get info about your github
+
+```js
+fetch(`https://api.github.com/users/${YOUR_GITHUB}`);
+```
+
+```js
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `<div>
+<img width='150' height='150' src="${avatar_url}" />
+<h3>${name}</h3>
+<p>${bio}</p>
+<a href="${repos_url}">My github</a>
+</div>`
+);
 ```

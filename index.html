@@ -73,34 +73,6 @@
       </div>
     </div> -->
     <script>
-      async function getUsers() {
-        let url = 'users.json';
-        try {
-          let res = fetch(url);
-          return res.json();
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      async function renderUsers() {
-        let users = getUsers();
-        let html = '';
-
-        users.map(user => {
-          let htmlSegment = `<div class="user">
-                             <img src="${user.profileURL}" >
-                             <h2>${user.firstName} ${user.lastName}</h2>
-                             <div class="email"><a href="email:${user.email}">${user.email}</a></div>
-                           </div>`;
-          html += htmlSegment;
-        });
-
-        let container = document.querySelector('.container');
-        container.innerHTML = html;
-      }
-
-      renderUsers();
       //   // To experiment with error handling, "threshold" values cause errors randomly
       //   const THRESHOLD_A = 8; // can use zero 0 to guarantee error
 
@@ -817,21 +789,148 @@
       //       });
       //     });
       //   };
+      // function addAsync(x, y) {
+      //   return new Promise((resolve, reject) => {
+      //     if (x === undefined || y === undefined) {
+      //       reject('Must provide two parameters');
+      //       // reject(new Error('Must provide two parameters'));
+      //     } else {
+      //       resolve(x + y);
+      //     }
+      //   });
+      // }
+      // addAsync(2, 4)
+      //   .then(res => console.log(res))
+      //   .catch(error => console.log(error));
+
+      // const promise = new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve(1);
+      //   }, 1000);
+      // });
+      // function newPromiseFunction(result = 1) {
+      //   console.log(result);
+      //   return new Promise(function (resolve, reject) {
+      //     setTimeout(() => resolve(result + 1), 1000); // (*)
+      //   });
+      // }
+
+      // newPromiseFunction()
+      //   .then(result => {
+      //     return newPromiseFunction(result);
+      //   })
+      //   .then(result => {
+      //     return newPromiseFunction(result);
+      //   })
+      //   .then(result => {
+      //     return newPromiseFunction(result);
+      //   })
+      //   .then(result => {
+      //     return newPromiseFunction(result);
+      //   });
       //   setTimeout(function () {
-      //     console.log(1);
+      //   console.log(1);
+      //   setTimeout(function () {
+      //     console.log(2);
       //     setTimeout(function () {
-      //       console.log(2);
+      //       console.log(3);
       //       setTimeout(function () {
-      //         console.log(3);
+      //         console.log(4);
       //         setTimeout(function () {
-      //           console.log(4);
-      //           setTimeout(function () {
-      //             console.log(5);
-      //           }, 1000);
+      //           console.log(5);
       //         }, 1000);
       //       }, 1000);
       //     }, 1000);
       //   }, 1000);
+      // }, 1000);
+      // promise
+      //   .then(value => {
+      //     console.log(value); //1
+      //     return value + 1;
+      //   })
+      //   .then(value => {
+      //     console.log(value); // 2
+      //     return value + 1;
+      //   })
+      //   .then(value => {
+      //     console.log(value); // 3
+      //     return value + 1;
+      //   })
+      //   .then(value => {
+      //     console.log(value); // 4
+      //     return value + 1;
+      //   })
+      //   .then(value => {
+      //     console.log(value); // 5
+      //   });
+
+      // const enterNumber = () => {
+      //   return new Promise((resolve, reject) => {
+      //     const userNumber = Number(window.prompt('Enter a number (1 - 6):')); // Ask the user to enter a number
+      //     const randomNumber = Math.floor(Math.random() * 6 + 1); // Pick a random number between 1 and 6
+
+      //     if (isNaN(userNumber)) {
+      //       reject(new Error('Wrong Input Type')); // If the user enters a value that is not a number, run reject with an error
+      //     }
+
+      //     if (userNumber === randomNumber) {
+      //       // If the user's number matches the random number, return 2 points
+      //       resolve({
+      //         points: 2,
+      //         randomNumber,
+      //       });
+      //     } else if (
+      //       userNumber === randomNumber - 1 ||
+      //       userNumber === randomNumber + 1
+      //     ) {
+      //       // If the user's number is different than the random number by 1, return 1 point
+      //       resolve({
+      //         points: 1,
+      //         randomNumber,
+      //       });
+      //     } else {
+      //       // Else return 0 points
+      //       resolve({
+      //         points: 0,
+      //         randomNumber,
+      //       });
+      //     }
+      //   });
+      // };
+
+      // const continueGame = () => {
+      //   return new Promise(resolve => {
+      //     if (window.confirm('Do you want to continue?')) {
+      //       // Ask if the user want to continue the game with a confirm modal
+      //       resolve(true);
+      //     } else {
+      //       resolve(false);
+      //     }
+      //   });
+      // };
+
+      // const handleGuess = async () => {
+      //   try {
+      //     const result = await enterNumber(); // Instead of the then method, we can get the result directly by just putting await before the promise
+
+      //     console.log(
+      //       `Dice: ${result.randomNumber}: you got ${result.points} points`
+      //     );
+
+      //     const isContinuing = await continueGame();
+
+      //     if (isContinuing) {
+      //       handleGuess();
+      //     } else {
+      //       alert('Game ends');
+      //     }
+      //   } catch (error) {
+      //     // Instead of catch method, we can use the try, catch syntax
+      //     alert(error);
+      //   }
+      // };
+
+      // handleGuess(); // Run handleGuess function
 
       //   const getEmployeeIds = new Promise((resolve, reject) => {
       //     setTimeout(() => {
@@ -864,25 +963,172 @@
       //   getEmployee().then(employee => {
       //     console.log(employee);
       //   });
-      //   let names = ['iliakan', 'remy', 'jeresig'];
 
-      //   let requests = names.map(name =>
-      //     fetch(`https://api.github.com/users/${name}`)
+      // const fetchNearByShop = ({ longi, lat }) => {
+      //   console.log(`🧭 Locating the nearby shop at (${longi} ${lat})`);
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(function () {
+      //       // Let's assume, it is a nearest pizza shop
+      //       // and resolve the shop id.
+      //       const response = {
+      //         shopId: 's-123',
+      //       };
+      //       resolve(response.shopId);
+      //     }, 1000);
+      //   });
+      // };
+      // const fetchAvailablePizzas = ({ shopId }) => {
+      //   console.log(`Getting Pizza List from the shop ${shopId}...`);
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(function () {
+      //       const response = {
+      //         // The list of pizzas
+      //         // available at the shop
+      //         pizzas: [
+      //           {
+      //             type: 'veg',
+      //             name: 'margarita',
+      //             id: 'pv-123',
+      //           },
+      //           {
+      //             type: 'nonveg',
+      //             name: 'pepperoni slice',
+      //             id: 'pnv-124',
+      //           },
+      //         ],
+      //       };
+      //       resolve(response);
+      //     }, 1000);
+      //   });
+      // };
+      // let getMyPizza = (result, type, name) => {
+      //   let pizzas = result.pizzas;
+      //   console.log('Got the Pizza List', pizzas);
+      //   let myPizza = pizzas.find(pizza => {
+      //     return pizza.type === type && pizza.name === name;
+      //   });
+      //   return new Promise((resolve, reject) => {
+      //     if (myPizza) {
+      //       console.log(`✔️ Found the Customer Pizza ${myPizza.name}!`);
+      //       resolve(myPizza);
+      //     } else {
+      //       reject(
+      //         new Error(
+      //           `❌ Sorry, we don't have ${type} ${name} pizza. Do you want anything else?`
+      //         )
+      //       );
+      //     }
+      //   });
+      // };
+      // const fetchBeverages = ({ pizzaId }) => {
+      //   console.log(`🧃 Getting Beverages for the pizza ${pizzaId}...`);
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(function () {
+      //       const response = {
+      //         id: 'b-10',
+      //         name: 'cola',
+      //       };
+      //       resolve(response);
+      //     }, 1000);
+      //   });
+      // };
+      // let create = (endpoint, payload) => {
+      //   if (endpoint.includes(`/api/pizzahub/order`)) {
+      //     console.log('Placing the pizza order with...', payload);
+
+      //     const { type, name, beverage } = payload;
+      //     return new Promise((resolve, reject) => {
+      //       setTimeout(function () {
+      //         resolve({
+      //           success: true,
+      //           message: `🍕 The ${type} ${name} pizza order with ${beverage} has been placed successfully.`,
+      //         });
+      //       }, 1000);
+      //     });
+      //   }
+      // };
+      // function fetch(endpoint, payload) {
+      //   if (endpoint.includes('/api/pizzahub/shop')) {
+      //     return fetchNearByShop(payload);
+      //   } else if (endpoint.includes('/api/pizzahub/pizza')) {
+      //     return fetchAvailablePizzas(payload);
+      //   } else if (endpoint.includes('/api/pizzahub/beverages')) {
+      //     return fetchBeverages(payload);
+      //   }
+      // }
+      // function orderPizza(type, name) {
+      //   // Get the Nearby Pizza Shop
+      //   fetch('/api/pizzahub/shop', { longi: 38.8951, lat: -77.0364 })
+      //     // Get all pizzas from the shop
+      //     .then(shopId => fetch('/api/pizzahub/pizza', { shopId: shopId }))
+      //     // Check the availability of the selected pizza
+      //     .then(allPizzas => getMyPizza(allPizzas, type, name))
+      //     // Check the availability of the selected beverage
+      //     .then(pizza =>
+      //       fetch('/api/pizzahub/beverages', { pizzaId: pizza.id })
+      //     )
+      //     // Create the order
+      //     .then(beverage =>
+      //       create('/api/pizzahub/order', {
+      //         beverage: beverage.name,
+      //         name: name,
+      //         type: type,
+      //       })
+      //     )
+      //     .then(result => console.log(result.message))
+      //     .catch(function (error) {
+      //       console.error(`${error.message}`);
+      //     });
+      // }
+      // // orderPizza('nonveg', 'pepperoni slice');
+      // orderPizza('veg', 'beef slice');
+
+      // let names = ['iliakan', 'rebnnmy', 'jeresig'];
+
+      // let requests = names.map(name =>
+      //   fetch(`https://api.github.com/users/${name}`)
+      // );
+
+      // Promise.all(requests)
+      //   .then(responses => {
+      //     // все промисы успешно завершены
+      //     for (let response of responses) {
+      //       console.log(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
+      //     }
+      //     return responses;
+      //   })
+      //   // преобразовать массив ответов response в response.json(),
+      //   // чтобы прочитать содержимое каждого
+      //   .then(responses =>
+      //     Promise.all(
+      //       responses.map(r => {
+      //         if (response.ok) {
+      //           return r.json();
+      //         }
+      //         throw new Error('Something went wrong');
+      //       })
+      //     )
+      //   )
+      //   // все JSON-ответы обработаны, users - массив с результатами
+      //   .then(users =>
+      //     users.forEach(user =>
+      //       document.body.insertAdjacentHTML(
+      //         'afterbegin',
+      //         `<div>
+      // <img width='150' height='150' src="${user.avatar_url}" />
+      // <h3>${user.name}</h3>
+      // <p>${user.bio}</p>
+      // <a href="${user.repos_url}">My github</a>
+      // </div>`
+      //       )
+      //     )
+      //   )
+      //   .catch(error =>
+      //     document.body.insertAdjacentHTML(
+      //       'afterbegin',
+      //       ` <h1>NOT FOUND 404</h1>`
+      //     )
       //   );
-
-      //   Promise.all(requests)
-      //     .then(responses => {
-      //       // все промисы успешно завершены
-      //       for (let response of responses) {
-      //         console.log(`${response.url}: ${response.status}`); // покажет 200 для каждой ссылки
-      //       }
-      //       return responses;
-      //     })
-      //     // преобразовать массив ответов response в response.json(),
-      //     // чтобы прочитать содержимое каждого
-      //     .then(responses => Promise.all(responses.map(r => r.json())))
-      //     // все JSON-ответы обработаны, users - массив с результатами
-      //     .then(users => users.forEach(user => console.log(user.name)));
     </script>
   </body>
 </html>
