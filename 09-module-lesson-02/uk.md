@@ -269,7 +269,49 @@ const timer1 = setTimeout(() => {
 console.log('end');
 ```
 
-## Example 2 - Promise setTimeout
+## Example 2 - Function and promise
+
+Перепешіть функцію `fetchUserFromServer` з колбеками таким чином, щоб вона не
+приймала колбеки, а повертала проміс
+
+Зараз функція fetchUserFromServer() знає занадто багато про той код, який буде
+використовувати результат її роботи. Вона очікує колбеки і відповідає за їх
+виклик за певних умов. Тобто ми передаємо щось всередину функції (колбеки) і
+сподіваємося, що воно відпрацює правильно - це недобре.
+
+Краще, якщо функція не зважає на той код, який буде використовувати її
+результат. Вона просто виконує якусь операцію і повертає результат своєї роботи
+у зовнішній код. Для того щоб повернути результат асинхронної операції, з
+функції необхідно повернути проміс.
+
+```js
+const fetchUserFromServer = (username, onSuccess, onError) => {
+  console.log(`Fetching data for ${username}`);
+
+  setTimeout(() => {
+    // Change value of isSuccess variable to simulate request status
+    const isSuccess = true;
+
+    if (isSuccess) {
+      onSuccess('success value');
+    } else {
+      onError('error');
+    }
+  }, 2000);
+};
+
+const onFetchSuccess = user => {
+  console.log(user);
+};
+
+const onFetchError = error => {
+  console.error(error);
+};
+
+fetchUserFromServer('Mango', onFetchSuccess, onFetchError);
+```
+
+## Example 3 - Promise setTimeout
 
 Вбудована функція setTimeout використовує колбек-функцію. Створіть альтернативу,
 яка використовує проміси.
@@ -285,7 +327,7 @@ function delay(ms) {
 delay(3000).then(() => alert('Я виконався через 3 секунди'));
 ```
 
-## Example 3 - Async function
+## Example 4 - Async function
 
 Створи функцію `addAsync` яка приймає 2 параметра, числа, і `повертає Promise`,
 якщо валідні та передані аргументи то ми повертаємо суму, але якщо ми передамо
