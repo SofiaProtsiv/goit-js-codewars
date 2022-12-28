@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 16px;
+        line-height: 1.5;
+        color: #212121;
+        font-family: sans-serif;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .posts {
+        margin: 0;
+        list-style: none;
+        margin-bottom: 16px;
+      }
+
+      .posts li:not(:last-child) {
+        margin-bottom: 16px;
+      }
+
+      .post-title {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .post-title:first-letter {
+        text-transform: uppercase;
+      }
+
+      .post-body {
+        margin: 0;
+      }
+
+      .alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 8px;
+        text-align: center;
+        background-color: tomato;
+        color: #fff;
+        transform: translatey(-100%);
+        transition: transform 250ms ease-in-out;
+      }
+
+      .alert.is-visible {
+        transform: translatey(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="alert">We're sorry, there are no more posts to load</div>
+    <ul class="posts"></ul>
+    <button type="button" class="btn">Fetch posts</button>
+
+    <script>
+      const fetchPostsBtn = document.querySelector('.btn');
+      const userList = document.querySelector('.posts');
+      const alertPopup = document.querySelector('.alert');
+
+      let isAlertVisible = false;
+
+      // Controls the group number
+      let page = 1;
+      // Controls the number of items in the group
+      let limit = 5;
+      // In our case total number of pages is calculated on frontend
+      const totalPages = 100 / limit;
+
+      fetchPostsBtn.addEventListener('click', () => {
+        // Check the end of the collection to display an alert
+        if (page > totalPages) {
+          return toggleAlertPopup();
+        }
+        // call fetchPosts:
+
+        // render posts
+
+        // Increase the group number
+
+        // Replace button text after first request "Fetch more posts"
+      });
+
+      function fetchPosts() {
+        const params = new URLSearchParams({
+          _limit: limit,
+          _page: page,
+        });
+
+        return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`);
+      }
+
+      function renderPosts(posts) {
+        const markup = posts
+          .map(({ id, title, body, userId }) => {
+            return `<li>
+          <h2 class="post-title">${title.slice(0, 30)}</h2>
+          <p><b>Post id</b>: ${id}</p>
+          <p><b>Author id</b>: ${userId}</p>
+          <p class="post-body">${body}</p>
+        </li>`;
+          })
+          .join('');
+
+        // insert markup into userLisr
+      }
+
+      function toggleAlertPopup() {
+        if (isAlertVisible) {
+          return;
+        }
+        isAlertVisible = true;
+        alertPopup.classList.add('is-visible');
+        setTimeout(() => {
+          alertPopup.classList.remove('is-visible');
+          isAlertVisible = false;
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
