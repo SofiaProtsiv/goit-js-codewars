@@ -1,4 +1,4 @@
-# Модуль 9. Заняття 19. Pagination
+# Модуль 10. Заняття 19. Pagination
 
 ## Example 1 - Reception "Load more"
 
