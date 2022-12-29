@@ -1,0 +1,1 @@
+function updateBookById(update, bookId) {}
