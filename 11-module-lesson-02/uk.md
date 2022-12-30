@@ -33,17 +33,17 @@ makeSmoothie();
 const BASE_URL = 'https://62d459315112e98e484e5213.mockapi.io';
 
 // GET -> /contacts
-export const getContacts = () => {
+const getContacts = () => {
   return fetch(`${BASE_URL}/contacts`).then(response => response.json());
 };
 
 // GET -> /contacts/:id
-export const getContactById = id => {
+const getContactById = id => {
   return fetch(`${BASE_URL}/contacts/${id}`).then(response => response.json());
 };
 
 // POST -> /contacts
-export const createContact = contact => {
+const createContact = contact => {
   const options = {
     method: 'POST',
     body: JSON.stringify(contact),
@@ -58,7 +58,7 @@ export const createContact = contact => {
 };
 
 // PUT -> /contacts/:id
-export const updateContact = newContact => {
+const updateContact = newContact => {
   const options = {
     method: 'PUT',
     body: JSON.stringify(newContact),
@@ -73,7 +73,7 @@ export const updateContact = newContact => {
 };
 
 // DELETE -> /contacts/:id
-export const deleteContact = id => {
+const deleteContact = id => {
   const options = {
     method: 'DELETE',
   };
