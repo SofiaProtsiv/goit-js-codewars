@@ -3,6 +3,26 @@
 ## Example 1 - rewrite function to async await
 
 ```js
+function getFruit(name) {
+  const fruits = [strawbery: "🍓", cherry: "🍒", pear: "🍐", banana:"🍌", orange:"🍊", apple:"🍎"];
+  return Promise.resolve(fruits(name));
+}
+
+function makeSmoothie() {
+  getFruit('apple').then(response => {
+    console.log(response);
+    getFruit('cherry').then(response => {
+      console.log(response);
+    });
+  });
+}
+
+makeSmoothie()
+```
+
+## Example 2 - rewrite function to async await
+
+```js
 const BASE_URL = 'https://62d459315112e98e484e5213.mockapi.io';
 
 // GET -> /contacts
@@ -57,7 +77,7 @@ export const deleteContact = async id => {
 };
 ```
 
-## Example 2 - Infinite scroll
+## Example 3 - Infinite scroll
 
 ```js
 let nextPage = 2;
