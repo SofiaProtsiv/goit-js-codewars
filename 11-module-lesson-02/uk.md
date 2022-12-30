@@ -4,8 +4,15 @@
 
 ```js
 function getFruit(name) {
-  const fruits = [strawbery: "🍓", cherry: "🍒", pear: "🍐", banana:"🍌", orange:"🍊", apple:"🍎"];
-  return Promise.resolve(fruits(name));
+  const fruits = {
+    strawbery: '🍓',
+    cherry: '🍒',
+    pear: '🍐',
+    banana: '🍌',
+    orange: '🍊',
+    apple: '🍎',
+  };
+  return Promise.resolve(fruits[name]);
 }
 
 function makeSmoothie() {
@@ -17,7 +24,7 @@ function makeSmoothie() {
   });
 }
 
-makeSmoothie()
+makeSmoothie();
 ```
 
 ## Example 2 - rewrite function to async await
@@ -26,17 +33,17 @@ makeSmoothie()
 const BASE_URL = 'https://62d459315112e98e484e5213.mockapi.io';
 
 // GET -> /contacts
-export const getContacts = async () => {
+export const getContacts = () => {
   return fetch(`${BASE_URL}/contacts`).then(response => response.json());
 };
 
 // GET -> /contacts/:id
-export const getContactById = async id => {
+export const getContactById = id => {
   return fetch(`${BASE_URL}/contacts/${id}`).then(response => response.json());
 };
 
 // POST -> /contacts
-export const createContact = async contact => {
+export const createContact = contact => {
   const options = {
     method: 'POST',
     body: JSON.stringify(contact),
@@ -51,7 +58,7 @@ export const createContact = async contact => {
 };
 
 // PUT -> /contacts/:id
-export const updateContact = async newContact => {
+export const updateContact = newContact => {
   const options = {
     method: 'PUT',
     body: JSON.stringify(newContact),
@@ -66,7 +73,7 @@ export const updateContact = async newContact => {
 };
 
 // DELETE -> /contacts/:id
-export const deleteContact = async id => {
+export const deleteContact = id => {
   const options = {
     method: 'DELETE',
   };
