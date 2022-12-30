@@ -103,3 +103,31 @@ const infinteObserver = новий IntersectionObserver(
 // робимо стартову ініціалізацію
 loadNewCards();
 ```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin: 0;
+      }
+
+      .card {
+        border: 3px solid #eee;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="./index.js"></script>
+  </body>
+</html>
+```
